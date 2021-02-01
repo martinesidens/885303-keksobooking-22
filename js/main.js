@@ -1,5 +1,7 @@
 'use strict'
 
-function getRandomInt(minNumber, maxNumber, symbolAfterPoint) {
-  return parseFloat((Math.random() * (maxNumber - minNumber) + minNumber).toFixed(symbolAfterPoint));
+function getRandomFloat(minNumber, maxNumber) {
+  return Math.random() * (maxNumber - minNumber) + minNumber;
 }
+
+getRandomFloat();
