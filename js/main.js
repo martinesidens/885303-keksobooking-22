@@ -10,6 +10,8 @@ const maxY = 139.80000;
 
 const features = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 
+console.log(Array.from(features.slice(0, getRandomInt (0, features.length))));
+
 function getRandomFloat(minNumber, maxNumber, symbolAfterPoint) {
   if(minNumber >= 0 && maxNumber >= 0 && (maxNumber >= minNumber)) {
     return parseFloat((Math.random() * (maxNumber - minNumber) + minNumber).toFixed(symbolAfterPoint));
@@ -35,11 +37,15 @@ function getAuthor (minNumber, maxNumber) {
   }
 }
 
-function getOffer () {  
-  const {locationX, locationY} = getLocation(minX, maxX, minY, maxY);
+// function getRandomArray (array, arrayLength) {
+//   array.slice
+//   return 
+// }
+
+function getOffer (minX, maxX, minY, maxY) {   
   return {
     title: 'Сдается квартира на улице Хошимина',
-    address: locationX + '' + locationY,
+    address: JSON.stringify(getLocation(minX, maxX, minY, maxY)),
     price: Math.abs(2500),
     type: type[getRandomInt(0, type.length - 1)],
     rooms: Math.abs(2),
