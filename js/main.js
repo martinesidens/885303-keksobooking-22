@@ -9,8 +9,14 @@ const minY = 139.70000;
 const maxY = 139.80000;
 
 const features = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
+const photos = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
 
-console.log(Array.from(features.slice(0, getRandomInt (0, features.length))));
+function getRandomArray (array) {
+  return [
+  Array.from(array.slice(0, getRandomInt (0, array.length-1)))
+  ] 
+}
+
 
 function getRandomFloat(minNumber, maxNumber, symbolAfterPoint) {
   if(minNumber >= 0 && maxNumber >= 0 && (maxNumber >= minNumber)) {
@@ -24,12 +30,14 @@ function getRandomInt (minNumber, maxNumber) {
   }
 }
 
-function getLocation(minX, maxX, minY, maxY) {
-  return {
+function getLocation() { 
+  return { 
     x: getRandomFloat(minX, maxX, 5),
-    y: getRandomFloat(minY, maxY, 5),
-  }
+    y: getRandomFloat(minY, maxY, 5) 
+  } 
 }
+
+const address = getLocation();
   
 function getAuthor (minNumber, maxNumber) {
   return {
@@ -37,24 +45,19 @@ function getAuthor (minNumber, maxNumber) {
   }
 }
 
-// function getRandomArray (array, arrayLength) {
-//   array.slice
-//   return 
-// }
-
-function getOffer (minX, maxX, minY, maxY) {   
+function getOffer () {   
   return {
     title: 'Сдается квартира на улице Хошимина',
-    address: JSON.stringify(getLocation(minX, maxX, minY, maxY)),
+    address: address.x + ',' + address.y,
     price: Math.abs(2500),
     type: type[getRandomInt(0, type.length - 1)],
     rooms: Math.abs(2),
     guests: Math.abs(4),
     checkin: atTime[getRandomInt(0, atTime.length - 1)],
     checkout: atTime[getRandomInt(0, atTime.length - 1)],
-    // features: ,
+    features: getRandomArray(features),
     description: 'Мебель, посуда и отличный вид на соседние трущобы.',
-    // photos: ,
+    photos: getRandomArray(photos),
   }
 }
 
@@ -62,7 +65,7 @@ function createAdvertisement() {
   return {
     autor: getAuthor(),
     offer: getOffer(),
-    location: getLocation(),
+    location: address,
   }
 }
 
