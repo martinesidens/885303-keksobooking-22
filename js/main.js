@@ -12,11 +12,8 @@ const features = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'condit
 const photos = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
 
 function getRandomArray (array) {
-  return [
-  Array.from(array.slice(0, getRandomInt (0, array.length-1)))
-  ] 
+  return [Array.from(array.slice(0, getRandomInt (0, array.length-1)))];
 }
-
 
 function getRandomFloat(minNumber, maxNumber, symbolAfterPoint) {
   if(minNumber >= 0 && maxNumber >= 0 && (maxNumber >= minNumber)) {
@@ -33,12 +30,10 @@ function getRandomInt (minNumber, maxNumber) {
 function getLocation() { 
   return { 
     x: getRandomFloat(minX, maxX, 5),
-    y: getRandomFloat(minY, maxY, 5) 
+    y: getRandomFloat(minY, maxY, 5),
   } 
 }
 
-const address = getLocation();
-  
 function getAuthor (minNumber, maxNumber) {
   return {
     avatar: 'img/avatars/user0' + getRandomFloat(minNumber, maxNumber) + '.png',
@@ -62,6 +57,7 @@ function getOffer () {
 }
 
 function createAdvertisement() {
+  const address = getLocation();
   return {
     autor: getAuthor(),
     offer: getOffer(),
@@ -70,3 +66,6 @@ function createAdvertisement() {
 }
 
 const advt = new Array(10).fill('').map(() => createAdvertisement());
+
+
+advt;
