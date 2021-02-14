@@ -1,7 +1,7 @@
 'use strict'
 
-const type = ['palace','flat','house','bungalow'];
-const atTime = ['12:00', '13:00', '14:00'];
+let type = ['palace','flat','house','bungalow'];
+let atTime = ['12:00', '13:00', '14:00'];
 
 const minX = 35.65000;
 const maxX = 35.70000;
@@ -10,6 +10,11 @@ const maxY = 139.80000;
 
 const minNum = 1;
 const maxNum = 8;
+
+let minRooms = 2;
+let maxRooms = 5;
+let minGuests = 4;
+let maxGuests = 10;
 
 let titleAdvt = '';
 let descriptionAdvt = '';
@@ -51,8 +56,8 @@ function createAdvertisement() {
       address: address.x + ',' + address.y,
       price: Math.abs(2500),
       type: type[getRandomInt(0, type.length - 1)],
-      rooms: Math.abs(2),
-      guests: Math.abs(4),
+      rooms: Math.abs(getRandomInt(minRooms, maxRooms)),
+      guests: Math.abs(getRandomInt(minGuests, maxGuests)),
       checkin: atTime[getRandomInt(0, atTime.length - 1)],
       checkout: atTime[getRandomInt(0, atTime.length - 1)],
       features: getRandomArray(features),
