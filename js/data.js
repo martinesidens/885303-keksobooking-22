@@ -16,6 +16,9 @@ const MAX_ROOMS = 5;
 let MIN_GUESTS = 4;
 let MAX_GUESTS = 10;
 
+const MIN_PRICE = 1500;
+const MAX_PRICE = 10500;
+
 let titleAdvt = '';
 let descriptionAdvt = '';
 
