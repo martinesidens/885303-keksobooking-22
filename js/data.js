@@ -1,7 +1,7 @@
 import {getRandomArray, getRandomFloat, getRandomInt} from './util.js';
 
-let TYPE = ['palace','flat','house','bungalow'];
-let AT_TIME = ['12:00', '13:00', '14:00'];
+const TYPE = ['palace','flat','house','bungalow'];
+const AT_TIME = ['12:00', '13:00', '14:00'];
 
 const MIN_X = 35.65000;
 const MAX_X = 35.70000;
@@ -13,8 +13,8 @@ const MAX_NUM = 8;
 
 const MIN_ROOMS = 2;
 const MAX_ROOMS = 5;
-let MIN_GUESTS = 4;
-let MAX_GUESTS = 10;
+const MIN_GUESTS = 4;
+const MAX_GUESTS = 10;
 
 const MIN_PRICE = 1500;
 const MAX_PRICE = 10500;
@@ -35,7 +35,7 @@ function getLocation() {
 function createAdvertisement() {
   const address = getLocation();
   return {
-    autor: {
+    author: {
       avatar: 'img/avatars/user0' + getRandomInt(MIN_NUM, MAX_NUM) + '.png',
     },
     offer: {
@@ -47,12 +47,12 @@ function createAdvertisement() {
       guests: Math.abs(getRandomInt(MIN_GUESTS, MAX_GUESTS)),
       checkin: AT_TIME[getRandomInt(0, AT_TIME.length - 1)],
       checkout: AT_TIME[getRandomInt(0, AT_TIME.length - 1)],
-      features: getRandomArray(features),
+      features: getRandomArray(FEATURES),
       description: descriptionAdvt,
       photos: getRandomArray(PHOTOS),
     },
-    x: address.x,
     location: {
+      x: address.x,
       y: address.y,
     },
   }
