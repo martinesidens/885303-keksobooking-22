@@ -59,9 +59,7 @@ function createAdvertisement() {
 }
 
 function getAdvt() {
-  return [
-    Array(10).fill('').map(() => createAdvertisement())   
-  ]
+  return [Array(10).fill('').map(() => createAdvertisement())];
 }
 
 export {getAdvt};
