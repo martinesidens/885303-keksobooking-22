@@ -1,5 +1,5 @@
-import {getAdvt} from './data.js';
+import {getAdvertisement} from './data.js';
 import {getCard} from './get-card.js'
 
-getAdvt();
-getCard();
+const array = getAdvertisement();
+getCard(array[0]);
