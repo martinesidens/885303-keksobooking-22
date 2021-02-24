@@ -42,7 +42,7 @@ advertisements.forEach((advertisementElement) => {
   }
 
 
-  //advertisement.querySelector('.popup__features').textContent = advertisementElement.offer.features;
+  advertisement.querySelector('.popup__features').textContent = advertisementElement.offer.features;
   
 
   advertisement.querySelector('.popup__description').textContent = advertisementElement.offer.description;
