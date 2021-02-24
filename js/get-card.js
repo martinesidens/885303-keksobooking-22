@@ -1,4 +1,5 @@
 import {getAdvertisement} from './data.js';
+import {findElementArray} from './util.js';
 
 const advertisements = getAdvertisement();
 
@@ -28,15 +29,28 @@ advertisements.forEach((advertisementElement) => {
   advertisement.querySelector('.popup__type').textContent = typeHousing;
   advertisement.querySelector('.popup__text--capacity').textContent = advertisementElement.offer.rooms + ' комнаты для ' + advertisementElement.offer.guests + ' гостей.';
   advertisement.querySelector('.popup__text--time').textContent = 'Заезд после ' + advertisementElement.offer.checkin + ', выезд до ' + advertisementElement.offer.checkout;
-  advertisement.querySelector('.popup__features').textContent = advertisementElement.offer.features;
-  console.log(advertisementElement.offer.features);
+  
+  let featuresList = advertisementElement.offer.features;
+
+  //console.log(findElementArray(featuresList, 'wifi'));
+  
+  for (let i = 0; i <= featuresList.length; i++) {
+    let featuresElement = featuresList[i];       
+    if (findElementArray(featuresList, 'wifi')) {
+      advertisement.querySelector('.popup__feature--wifi').classList.remove('hidden');      
+    }    
+  }
+
+
+  //advertisement.querySelector('.popup__features').textContent = advertisementElement.offer.features;
+  
 
   advertisement.querySelector('.popup__description').textContent = advertisementElement.offer.description;
   mapCanvas.appendChild(advertisement);
 });
 
-function getCard (ad) {
-    console.log(ad.offer.title);
+function getCard (advertisements) {
+    
   }
 
 

@@ -14,4 +14,13 @@ function getRandomInt (minNumber, maxNumber) {
   }
 }
 
-export {getRandomArray, getRandomFloat, getRandomInt};
+function findElementArray (array, element) {
+  for (var i = 0; i < array.length; i++) {
+      if (array[i] === element) {
+          return true;
+      }
+  }
+  return false;
+}
+
+export {getRandomArray, getRandomFloat, getRandomInt, findElementArray};
