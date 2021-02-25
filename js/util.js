@@ -30,8 +30,4 @@ function findElementArray (array, arrayElement) {
   }
 }
 
-
-
-
-
 export {getRandomArray, getRandomFloat, getRandomInt, findElementArray};
