@@ -23,7 +23,7 @@ function getRandomInt (minNumber, maxNumber) {
 //   return false;
 // }
 
-function findElementArray (arrayElement, idx) {
+function findElementArray (array, arrayElement) {
   let elem = array.indexOf(arrayElement);
   if (elem != -1 ) {
       return true;
