@@ -1,5 +1,5 @@
-function getRandomArray (array) {
-  return [Array.from(array.slice(0, getRandomInt (0, array.length-1)))];
+function getRandomArray (data) {
+  return Array.from(data.slice(0, getRandomInt (0, data.length-1)));
 }
 
 function getRandomFloat(minNumber, maxNumber, symbolAfterPoint) {
@@ -14,20 +14,4 @@ function getRandomInt (minNumber, maxNumber) {
   }
 }
 
-// function findElementArray (array, element) {
-//   for (var i = 0; i < array.length; i++) {
-//       if (array[i] === element) {
-//           return true;
-//       }
-//   }
-//   return false;
-// }
-
-function findElementArray (array, arrayElement) {
-  let elem = array.indexOf(arrayElement);
-  if (elem != -1 ) {
-      return true;
-  }
-}
-
-export {getRandomArray, getRandomFloat, getRandomInt, findElementArray};
+export {getRandomArray, getRandomFloat, getRandomInt};
