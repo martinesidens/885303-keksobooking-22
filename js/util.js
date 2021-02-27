@@ -14,11 +14,4 @@ function getRandomInt (minNumber, maxNumber) {
   }
 }
 
-function makeElementPhoto (tagName, className, data) {
-  const element = document.createElement(tagName);
-  element.classList.add(className);
-  element.src = data;
-  return element;
-}
-
-export {getRandomArray, getRandomFloat, getRandomInt, makeElementPhoto};
+export {getRandomArray, getRandomFloat, getRandomInt};
