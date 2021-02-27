@@ -1,4 +1,5 @@
 import {getAdvertisement} from './data.js';
+import {makeElementPhoto} from './util.js';
 
 const advertisements = getAdvertisement();
 
@@ -35,8 +36,17 @@ advertisements.forEach((advertisementElement) => {
     advertisement.querySelector(`.popup__feature--${feature}`).classList.remove('hidden');
   })
 
-  advertisement.querySelector('.popup__description').textContent = advertisementElement.offer.description;
+  //advertiadvertisement.querySelector('.popup__photos') = makeElementPhotod(avertisementElement.offer.photos);
+  advertisementElement.offer.photos.forEach((srcImage) => {
+    const srcImageElement = advertisement.querySelector('.popup_photo').cloneNode(true);
+    srcImageElement.src = srcImage;
+    advertisement.querySelector('.popup_photos').appendChild(srcImageElement);
+  });
+  
+  console.log(advertisementElement.offer.photos);
   mapCanvas.appendChild(advertisement);
+
+
 });
 
 function getCard (advertisements) {

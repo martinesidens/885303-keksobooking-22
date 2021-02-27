@@ -1,5 +1,5 @@
 function getRandomArray (data) {
-  return Array.from(data.slice(0, getRandomInt (0, data.length-1)));
+  return Array.from(data.slice(0, getRandomInt (0, data.length)));
 }
 
 function getRandomFloat(minNumber, maxNumber, symbolAfterPoint) {
@@ -14,4 +14,11 @@ function getRandomInt (minNumber, maxNumber) {
   }
 }
 
-export {getRandomArray, getRandomFloat, getRandomInt};
+function makeElementPhoto (tagName, className, data) {
+  const element = document.createElement(tagName);
+  element.classList.add(className);
+  element.src = data;
+  return element;
+}
+
+export {getRandomArray, getRandomFloat, getRandomInt, makeElementPhoto};
