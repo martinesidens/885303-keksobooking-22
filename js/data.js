@@ -19,17 +19,17 @@ const MAX_GUESTS = 10;
 const MIN_PRICE = 1500;
 const MAX_PRICE = 10500;
 
-let titleAdvt = '';
-let descriptionAdvt = '';
+let titleAdvt = 'Тестовый заголовок';
+let descriptionAdvt = 'Тестовое описание';
 
 const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 const PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
 
-function getLocation() { 
-  return { 
+function getLocation() {
+  return {
     x: getRandomFloat(MIN_X, MAX_X, 5),
     y: getRandomFloat(MIN_Y, MAX_Y, 5),
-  } 
+  }
 }
 
 function createAdvertisement() {
@@ -58,8 +58,8 @@ function createAdvertisement() {
   }
 }
 
-function getAdvt() {
-  return [Array(10).fill('').map(() => createAdvertisement())];
+function getAdvertisement() {
+  return Array(10).fill('').map(() => createAdvertisement());
 }
 
-export {getAdvt};
+export {getAdvertisement};
