@@ -43,6 +43,6 @@ advertisements.forEach((advertisementElement) => {
   });
 
   advertisement.querySelector('.popup__avatar').src = advertisementElement.author.avatar;
-  mapCanvas.appendChild(advertisement);
+  //mapCanvas.appendChild(advertisement);
 });
 
