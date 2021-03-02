@@ -3,19 +3,32 @@ const interactiveElements = form.querySelectorAll('fieldset');
 const mapForm = document.querySelector('.map__filters');
 const mapFilters = mapForm.querySelectorAll('select');
 
-form.classList.add('ad-form--disabled');
-mapForm.classList.add('ad-form--disabled');
 
-interactiveElements.forEach((element) => {
-  element.setAttribute("disabled", "disabled");
-})
+function disabledForm () {
+  form.classList.add('ad-form--disabled');
+  mapForm.classList.add('ad-form--disabled');
 
-mapFilters.forEach((element) => {
-  element.setAttribute("disabled", "disabled");
-})
+  interactiveElements.forEach((element) => {
+    element.setAttribute('disabled', 'disabled');
+  })
 
-//console.log(mapFilters);
+  mapFilters.forEach((element) => {
+    element.setAttribute('disabled', 'disabled');
+  })
+}
 
+function activeForm () {
+  form.classList.remove('ad-form--disabled');
+  mapForm.classList.remove('ad-form--disabled');
+
+  interactiveElements.forEach((element) => {
+    element.removeAttribute('disabled', 'disabled');
+  })
+
+  mapFilters.forEach((element) => {
+    element.removeAttribute('disabled', 'disabled');
+  })
+}
 
 const typeHousingSelected = document.querySelector('#type').value;
 const price = document.querySelector("#price");
@@ -35,13 +48,7 @@ switch (typeHousingSelected) {
     price.placeholder = 10000;
     break;
 }
-
-// function onchangePrice () {
-
-// }
-
 // document.querySelector('#type').addEventListener('change', onChangePrice);
-
-
-
 // console.log(document.querySelector("#price").value);
+
+export {activeForm, disabledForm};
