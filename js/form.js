@@ -17,22 +17,31 @@ mapFilters.forEach((element) => {
 //console.log(mapFilters);
 
 
-// const typeHousingSelected = document.querySelector('#type').value;
+const typeHousingSelected = document.querySelector('#type').value;
+const price = document.querySelector("#price");
 
-// switch (typeHousingSelected) {
-//   case "flat":
-//     document.querySelector("#price").value = 1000;
-//     document.querySelector("#price").placeholder = 1000;
-//     break;
-//   case "bungalow":
-//     document.querySelector("#price").placeholder = 0;
-//     break;
-//   case "house":
-//     document.querySelector("#price").placeholder = 5000;
-//     break;
-//   case "palace":
-//     document.querySelector("#price").placeholder = 10000;
-//     break;
+switch (typeHousingSelected) {
+  case "flat":
+    price.value = 1000;
+    price.placeholder = 1000;
+    break;
+  case "bungalow":
+    price.placeholder = 0;
+    break;
+  case "house":
+    price.placeholder = 5000;
+    break;
+  case "palace":
+    price.placeholder = 10000;
+    break;
+}
+
+// function onchangePrice () {
+
 // }
+
+// document.querySelector('#type').addEventListener('change', onChangePrice);
+
+
 
 // console.log(document.querySelector("#price").value);
