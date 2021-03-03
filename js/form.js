@@ -2,6 +2,7 @@ const form = document.querySelector('.ad-form');
 const interactiveElements = form.querySelectorAll('fieldset');
 const mapForm = document.querySelector('.map__filters');
 const mapFilters = mapForm.querySelectorAll('select');
+const price = document.querySelector("#price");
 
 
 function disabledForm () {
@@ -30,25 +31,19 @@ function activeForm () {
   })
 }
 
-const typeHousingSelected = document.querySelector('#type').value;
-const price = document.querySelector("#price");
 
-switch (typeHousingSelected) {
-  case "flat":
-    price.value = 1000;
-    price.placeholder = 1000;
-    break;
-  case "bungalow":
-    price.placeholder = 0;
-    break;
-  case "house":
-    price.placeholder = 5000;
-    break;
-  case "palace":
-    price.placeholder = 10000;
-    break;
+const minValueForHousing = {
+  flat: 1000,
+  bungalow: 0,
+  house: 5000,
+  palace: 10000,
 }
-// document.querySelector('#type').addEventListener('change', onChangePrice);
-// console.log(document.querySelector("#price").value);
+
+function onChangePrice (evt) {
+    const typeHousingSelected = evt.target.value;
+    price.value = minValueForHousing[typeHousingSelected];
+  }
+
+document.querySelector('#type').addEventListener('change', onChangePrice);
 
 export {activeForm, disabledForm};
