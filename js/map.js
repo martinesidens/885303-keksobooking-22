@@ -3,7 +3,7 @@ import {activeForm, disabledForm} from './form.js';
 disabledForm();
 
 const map = L.map('map-canvas').on('load', () => {
-  activeForm();
+  activeForm();  
 })
 .setView([35.6895, 139.692], 10);
 
@@ -29,8 +29,17 @@ const marker = L.marker(
     lng: 139.692,
   },
   {
+    draggable: true,
+  },
+  {
     icon: myIcon
   },
 );
 
 marker.addTo(map);
+
+marker.on('moveend', (evt) => {
+  document.querySelector('#address').value = evt.target.getLatLng();
+  console.log(document.querySelector('#address').value);
+});
+
