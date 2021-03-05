@@ -2,7 +2,7 @@ import {getAdvertisement} from './data.js';
 
 const advertisements = getAdvertisement();
 
-const mapCanvas = document.querySelector('#map-canvas');
+//const mapCanvas = document.querySelector('#map-canvas');
 const templateCard = document.querySelector('#card').content;
 
 advertisements.forEach((advertisementElement) => {

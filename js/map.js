@@ -1,12 +1,12 @@
-import {activeForm, disabledForm} from './form.js';
+import {switchForm} from './form.js';
 
-disabledForm();
+switchForm();
 
 const map = L.map('map-canvas').on('load', () => {
-  activeForm();
+  switchForm();
   document.querySelector('#address').value = '35.6895, 139.692';
 })
-.setView([35.6895, 139.692], 10);
+  .setView([35.6895, 139.692], 10);
 
 L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -21,7 +21,7 @@ const myIcon = L.icon({
   iconAnchor: [26, 52],
   popupAnchor: [-3, -76],
   shadowSize: [68, 95],
-  shadowAnchor: [22, 94]
+  shadowAnchor: [22, 94],
 });
 
 const marker = L.marker(
@@ -31,14 +31,14 @@ const marker = L.marker(
   },
   {
     draggable: true,
-    icon: myIcon
-  }
+    icon: myIcon,
+  },
 );
 
 marker.addTo(map);
 
 marker.on('moveend', (evt) => {
-  document.querySelector('#address').value = evt.target.getLatLng().lat;
-  console.log(document.querySelector('#address').value);
+  document.querySelector('#address').value = `${evt.target.getLatLng().lat}, ${evt.target.getLatLng().lng}`;
+  //console.log(document.querySelector('#address').value);
 });
 
