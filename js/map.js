@@ -1,3 +1,5 @@
+/* global L*/
+
 import {switchForm} from './form.js';
 
 switchForm();
