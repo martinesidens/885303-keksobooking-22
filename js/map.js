@@ -1,6 +1,7 @@
 /* global L*/
 
 import {switchForm} from './form.js';
+import './get-card.js';
 
 switchForm();
 
@@ -40,7 +41,8 @@ const marker = L.marker(
 marker.addTo(map);
 
 marker.on('moveend', (evt) => {
-  document.querySelector('#address').value = `${evt.target.getLatLng().lat}, ${evt.target.getLatLng().lng}`;
-  //console.log(document.querySelector('#address').value);
+  document.querySelector('#address').value = `${parseFloat(evt.target.getLatLng().lat).toFixed(5)}, ${parseFloat(evt.target.getLatLng().lng).toFixed(5)}`;
 });
+
+//console.log(cards);
 

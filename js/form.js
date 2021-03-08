@@ -1,24 +1,24 @@
-const form = document.querySelector('.ad-form');
-const interactiveElements = form.querySelectorAll('fieldset');
-const mapForm = document.querySelector('.map__filters');
-const mapFilters = mapForm.querySelectorAll('select');
-const price = document.querySelector('#price');
+const formElement = document.querySelector('.ad-form');
+const interactiveElements = formElement.querySelectorAll('fieldset');
+const mapFormElement = document.querySelector('.map__filters');
+const mapFilterElements = mapFormElement.querySelectorAll('select');
+const priceElement = document.querySelector('#price');
 
 
 function switchForm () {
-  form.classList.toggle('ad-form--disabled');
-  mapForm.classList.toggle('ad-form--disabled');
+  formElement.classList.toggle('ad-form--disabled');
+  mapFormElement.classList.toggle('ad-form--disabled');
 
   interactiveElements.forEach((element) => {
-    element.toggleAttribute('disabled', 'disabled');
+    element.toggleAttribute('disabled');
   })
 
-  mapFilters.forEach((element) => {
-    element.toggleAttribute('disabled', 'disabled');
+  mapFilterElements.forEach((element) => {
+    element.toggleAttribute('disabled');
   })
 }
 
-const minValueForHousing = {
+const MIN_VALUE_FOR_HOUSING = {
   flat: 1000,
   bungalow: 0,
   house: 5000,
@@ -27,7 +27,7 @@ const minValueForHousing = {
 
 function onChangePrice (evt) {
   const typeHousingSelected = evt.target.value;
-  price.value = minValueForHousing[typeHousingSelected];
+  priceElement.value = MIN_VALUE_FOR_HOUSING[typeHousingSelected];
 }
 
 document.querySelector('#type').addEventListener('change', onChangePrice);
