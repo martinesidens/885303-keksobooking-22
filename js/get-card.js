@@ -44,10 +44,7 @@ function getAdvertisementElement () {
     });
 
     advertisement.querySelector('.popup__avatar').src = advertisementElement.author.avatar;
-    cards.push(advertisement);
-    console.log(advertisement);
-  //mapCanvas.appendChild(advertisement);
-});
+  });
 }
 
 //console.log(cards);
