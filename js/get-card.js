@@ -3,7 +3,6 @@ import './map.js';
 
 const templateCard = document.querySelector('#card').content;
 const advertisements = getAdvertisement();
-const cards = [];
 
 function getAdvertisementElement () {
   advertisements.forEach((advertisementElement) => {
@@ -44,10 +43,11 @@ function getAdvertisementElement () {
     });
 
     advertisement.querySelector('.popup__avatar').src = advertisementElement.author.avatar;
+    //console.log(advertisement);    
   });
 }
 
-//console.log(cards);
+//console.log(getAdvertisementElement(advertisements));
 
-export {getAdvertisementElement};
+export {getAdvertisementElement, templateCard};
 
