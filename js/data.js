@@ -34,8 +34,8 @@ function createAdvertisement() {
   }
 }
 
-function getAdvertisement() {
+function getAdvertisements() {
   return Array(10).fill('').map(() => createAdvertisement());
 }
 
-export {getAdvertisement};
+export {getAdvertisements};
