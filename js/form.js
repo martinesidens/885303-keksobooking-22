@@ -30,6 +30,40 @@ function onChangePrice (evt) {
   priceElement.placeholder = MIN_VALUE_FOR_HOUSING[typeHousingSelected];
 }
 
+function onChangeTimeIn (evt) {
+  const time = evt.target.value;
+  const timeOut = document.querySelector('#timeout');
+  switch (time) {
+    case '12:00':
+      timeOut.value = '12:00';
+      break;
+    case '13:00':
+      timeOut.value = '13:00';
+      break;
+    case '14:00':
+      timeOut.value = '14:00';
+      break;    
+  }  
+}
+
+function onChangeTimeOut (evt) {
+  const time = evt.target.value;
+  const timeIn = document.querySelector('#timein');
+  switch (time) {
+    case '12:00':
+      timeIn.value = '12:00';
+      break;
+    case '13:00':
+      timeIn.value = '13:00';
+      break;
+    case '14:00':
+      timeIn.value = '14:00';
+      break;    
+  }  
+}
+
 document.querySelector('#type').addEventListener('change', onChangePrice);
+document.querySelector('#timein').addEventListener('change', onChangeTimeIn);
+document.querySelector('#timeout').addEventListener('change', onChangeTimeOut);
 
 export {switchForm};
