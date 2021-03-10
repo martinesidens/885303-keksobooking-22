@@ -68,7 +68,7 @@ function initMap () {
           );          
           
           marker.addTo(map);
-          marker.bindPopup(getAdvertisementElement());   
+          marker.bindPopup(getAdvertisementElement(advertisement)); 
           marker.on('moveend', (evt) => {
             document.querySelector('#address').value = `${parseFloat(evt.target.getLatLng().lat).toFixed(5)}, ${parseFloat(evt.target.getLatLng().lng).toFixed(5)}`;
           });
