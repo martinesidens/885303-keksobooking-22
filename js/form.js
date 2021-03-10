@@ -1,8 +1,15 @@
+import {MAX_PRICE} from './variables.js';
+
 const formElement = document.querySelector('.ad-form');
 const interactiveElements = formElement.querySelectorAll('fieldset');
 const mapFormElement = document.querySelector('.map__filters');
 const mapFilterElements = mapFormElement.querySelectorAll('select');
 const priceElement = document.querySelector('#price');
+
+
+const MIN_NAME_LENGTH = 30;
+const MAX_NAME_LENGTH = 100;
+const titleAdvertisement = document.querySelector('#title');
 
 const MIN_VALUE_FOR_HOUSING = {
   flat: 1000,
@@ -42,8 +49,8 @@ function onChangeTimeIn (evt) {
       break;
     case '14:00':
       timeOut.value = '14:00';
-      break;    
-  }  
+      break;
+  }
 }
 
 function onChangeTimeOut (evt) {
@@ -58,12 +65,34 @@ function onChangeTimeOut (evt) {
       break;
     case '14:00':
       timeIn.value = '14:00';
-      break;    
-  }  
+      break;
+  }
 }
 
 document.querySelector('#type').addEventListener('change', onChangePrice);
 document.querySelector('#timein').addEventListener('change', onChangeTimeIn);
 document.querySelector('#timeout').addEventListener('change', onChangeTimeOut);
+
+titleAdvertisement.addEventListener('input', () => {
+  const valueLength = titleAdvertisement.value.length;
+
+  if (valueLength < MIN_NAME_LENGTH) {
+    titleAdvertisement.setCustomValidity(`Добавьте ещё ${MIN_NAME_LENGTH - valueLength} символов`);
+  } else if (valueLength > MAX_NAME_LENGTH) {
+    titleAdvertisement.setCustomValidity(`Удалите лишние ${valueLength - MAX_NAME_LENGTH} символы`);
+  } else {
+    titleAdvertisement.setCustomValidity('');
+  }
+  titleAdvertisement.reportValidity();
+});
+
+priceElement.addEventListener('input', () => {
+  if (priceElement.value > MAX_PRICE) {
+    priceElement.setCustomValidity(`Введенная сумма превышает максимально возможное значение на ${MAX_PRICE - priceElement.value}`);
+  } else {
+    priceElement.setCustomValidity('');
+  }
+  priceElement.reportValidity();
+})
 
 export {switchForm};
