@@ -5,7 +5,8 @@ const interactiveElements = formElement.querySelectorAll('fieldset');
 const mapFormElement = document.querySelector('.map__filters');
 const mapFilterElements = mapFormElement.querySelectorAll('select');
 const priceElement = document.querySelector('#price');
-
+const roomNumber = document.querySelector('#room_number');
+const capacityGuests = document.querySelector('#capacity');
 
 const MIN_NAME_LENGTH = 30;
 const MAX_NAME_LENGTH = 100;
@@ -93,6 +94,17 @@ priceElement.addEventListener('input', () => {
     priceElement.setCustomValidity('');
   }
   priceElement.reportValidity();
+})
+
+roomNumber.addEventListener('change', () => {
+
+  if (roomNumber.value == 1) {
+    capacityGuests.setAttribute('disable');
+  }
+   
+  console.log(roomNumber.value);
+  console.log(capacityGuests.value);
+ 
 })
 
 export {switchForm};
