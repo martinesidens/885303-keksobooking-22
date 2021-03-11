@@ -1,11 +1,9 @@
-import {getAdvertisement} from './data.js';
+import './map.js';
 
-const advertisements = getAdvertisement();
-
-const mapCanvas = document.querySelector('#map-canvas');
 const templateCard = document.querySelector('#card').content;
 
-advertisements.forEach((advertisementElement) => {
+function getAdvertisementElement (advertisementElement) {
+
   const advertisement = templateCard.cloneNode(true);
   advertisement.querySelector('.popup__title').textContent = advertisementElement.offer.title;
   advertisement.querySelector('.popup__text--address').textContent = advertisementElement.offer.address;
@@ -43,6 +41,13 @@ advertisements.forEach((advertisementElement) => {
   });
 
   advertisement.querySelector('.popup__avatar').src = advertisementElement.author.avatar;
-  mapCanvas.appendChild(advertisement);
-});
+  //console.log(advertisement);
+
+  return advertisement;
+}
+
+
+//console.log(getAdvertisementElement(advertisements));
+
+export {getAdvertisementElement};
 
