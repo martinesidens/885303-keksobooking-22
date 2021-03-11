@@ -96,15 +96,15 @@ priceElement.addEventListener('input', () => {
   priceElement.reportValidity();
 })
 
-roomNumber.addEventListener('change', () => {
+capacityGuests.addEventListener('change', () => {
 
-  if (roomNumber.value == 1) {
-    capacityGuests.setAttribute('disable');
+  if (roomNumber.value === 1 && capacityGuests.value === 2) {
   }
-   
-  console.log(roomNumber.value);
+  capacityGuests.setCustomValidity('Работает первая проверка');
+
   console.log(capacityGuests.value);
- 
+  console.log(roomNumber.value);
+
 })
 
 export {switchForm};
