@@ -94,6 +94,7 @@ priceElement.addEventListener('input', () => {
     priceElement.setCustomValidity('');
   }
   priceElement.reportValidity();
+<<<<<<< HEAD
 });
 
 capacityGuests.addEventListener('change', () => {
@@ -117,5 +118,19 @@ capacityGuests.addEventListener('change', () => {
   console.log(capacityGuests[3]);
   console.log(roomNumber[0]);
 });
+=======
+})
+
+capacityGuests.addEventListener('change', () => {
+
+  if (roomNumber.value === 1 && capacityGuests.value === 2) {
+  }
+  capacityGuests.setCustomValidity('Работает первая проверка');
+
+  console.log(capacityGuests.value);
+  console.log(roomNumber.value);
+
+})
+>>>>>>> dd269ceb932ed432bf3b82a6604d28d3afac89f2
 
 export {switchForm};
