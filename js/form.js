@@ -94,17 +94,28 @@ priceElement.addEventListener('input', () => {
     priceElement.setCustomValidity('');
   }
   priceElement.reportValidity();
-})
+});
 
-roomNumber.addEventListener('change', () => {
-
-  if (roomNumber.value == 1) {
-    capacityGuests.setAttribute('disable');
-  }
-   
-  console.log(roomNumber.value);
-  console.log(capacityGuests.value);
+capacityGuests.addEventListener('change', () => {
+  
+  if (capacityGuests[2]) {
+    roomNumber[0].removeAttribute('disabled');
+  } else if (capacityGuests[2]) {
+    roomNumber[0].removeAttribute('disabled');
+    roomNumber[1].removeAttribute('disabled');
+  } else if (capacityGuests[2]) {
+    roomNumber[0].removeAttribute('disabled');
+    roomNumber[1].removeAttribute('disabled');
+    roomNumber[2].removeAttribute('disabled');
+  } else (capacityGuests[3]) {
+    roomNumber[3].removeAttribute('disabled');
+  } 
  
-})
+  console.log(capacityGuests[0]);
+  console.log(capacityGuests[1]);
+  console.log(capacityGuests[2]);
+  console.log(capacityGuests[3]);
+  console.log(roomNumber[0]);
+});
 
 export {switchForm};
