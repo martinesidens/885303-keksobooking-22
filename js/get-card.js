@@ -41,13 +41,9 @@ function getAdvertisementElement (advertisementElement) {
   });
 
   advertisement.querySelector('.popup__avatar').src = advertisementElement.author.avatar;
-  //console.log(advertisement);
 
   return advertisement;
 }
-
-
-//console.log(getAdvertisementElement(advertisements));
 
 export {getAdvertisementElement};
 

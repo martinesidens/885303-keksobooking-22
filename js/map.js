@@ -3,6 +3,8 @@
 import {switchForm} from './form.js';
 import {getAdvertisementElement} from './get-card.js';
 import {getAdvertisements} from './data.js';
+import {getData} from './server.js';
+
 
 switchForm();
 
@@ -44,6 +46,7 @@ function initMap () {
   marker.on('moveend', (evt) => {
     document.querySelector('#address').value = `${parseFloat(evt.target.getLatLng().lat).toFixed(5)}, ${parseFloat(evt.target.getLatLng().lng).toFixed(5)}`;
   });
+  console.log(getData());
 
   getAdvertisements().forEach((advertisement) => {
     const commonIcon = L.icon({
