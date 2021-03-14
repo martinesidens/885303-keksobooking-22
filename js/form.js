@@ -89,48 +89,31 @@ titleAdvertisement.addEventListener('input', () => {
 
 priceElement.addEventListener('input', () => {
   if (priceElement.value > MAX_PRICE) {
-    priceElement.setCustomValidity(`Введенная сумма превышает максимально возможное значение на ${MAX_PRICE - priceElement.value}`);
+    priceElement.setCustomValidity('Введенная сумма превышает максимально возможное значение');
   } else {
     priceElement.setCustomValidity('');
   }
   priceElement.reportValidity();
-<<<<<<< HEAD
 });
 
-capacityGuests.addEventListener('change', () => {
-  
-  if (capacityGuests[2]) {
-    roomNumber[0].removeAttribute('disabled');
-  } else if (capacityGuests[2]) {
-    roomNumber[0].removeAttribute('disabled');
-    roomNumber[1].removeAttribute('disabled');
-  } else if (capacityGuests[2]) {
-    roomNumber[0].removeAttribute('disabled');
-    roomNumber[1].removeAttribute('disabled');
-    roomNumber[2].removeAttribute('disabled');
-  } else (capacityGuests[3]) {
-    roomNumber[3].removeAttribute('disabled');
-  } 
- 
-  console.log(capacityGuests[0]);
-  console.log(capacityGuests[1]);
-  console.log(capacityGuests[2]);
-  console.log(capacityGuests[3]);
-  console.log(roomNumber[0]);
-});
-=======
-})
+const quantityRoomOne = roomNumber[0];
+const quantityRoomTwo = roomNumber[1];
+const quantityRoomThree = roomNumber[2];
+const quantityRoomHundred = roomNumber[3];
 
 capacityGuests.addEventListener('change', () => {
-
-  if (roomNumber.value === 1 && capacityGuests.value === 2) {
+  if (capacityGuests.value == 0) {
+    quantityRoomHundred.removeAttribute('disabled');
+  } else if (capacityGuests.value == 1) {
+    quantityRoomOne.removeAttribute('disabled');
+  } else if (capacityGuests.value == 2) {
+    quantityRoomOne.removeAttribute('disabled');
+    quantityRoomTwo.removeAttribute('disabled');
+  } else if (capacityGuests.value == 3) {
+    quantityRoomOne.removeAttribute('disabled');
+    quantityRoomTwo.removeAttribute('disabled');
+    quantityRoomThree.removeAttribute('disabled');
   }
-  capacityGuests.setCustomValidity('Работает первая проверка');
-
-  console.log(capacityGuests.value);
-  console.log(roomNumber.value);
-
-})
->>>>>>> dd269ceb932ed432bf3b82a6604d28d3afac89f2
+});
 
 export {switchForm};
