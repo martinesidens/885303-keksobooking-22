@@ -27,9 +27,9 @@ function getRandomInt (minNumber, maxNumber) {
   alertContainer.style.fontSize = '30px';
   alertContainer.style.textAlign = 'center';
   alertContainer.style.backgroundColor = '#888888';
-  
+
   alertContainer.textContent = message;
-  
+
   document.body.append(alertContainer);
 
   setTimeout(() => {
@@ -37,4 +37,17 @@ function getRandomInt (minNumber, maxNumber) {
   }, ALERT_SHOW_TIME);
 }
 
-export {getRandomArray, getRandomFloat, getRandomInt, showAlert};
+function pushSuccessMessage () {
+  const messageContainer = document.querySelector('main');
+  const success = document.querySelector('#success').content;
+  messageContainer.appendChild(success);
+}
+
+function pushFailureMessage () {
+  const messageContainer = document.querySelector('main');
+  const failure = document.querySelector('#error').content;
+  messageContainer.appendChild(failure);  //.addEventListener('click', )
+
+}
+
+export {getRandomArray, getRandomFloat, getRandomInt, showAlert, pushSuccessMessage, pushFailureMessage};

@@ -119,10 +119,10 @@ capacityGuests.addEventListener('change', () => {
 
 function createAdvertisementInServer () {
   formElement.addEventListener('submit', (evt) => {
-    evt.preventDefault(); 
+    evt.preventDefault();
       const formData = new FormData(evt.target);
-      console.log(formData);
       pushData(formData);
+      console.log(formData);
    })
 }
 
