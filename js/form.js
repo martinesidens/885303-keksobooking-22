@@ -1,4 +1,5 @@
 import {MAX_PRICE} from './variables.js';
+import {pushData} from './server.js';
 
 const formElement = document.querySelector('.ad-form');
 const interactiveElements = formElement.querySelectorAll('fieldset');
@@ -115,5 +116,16 @@ capacityGuests.addEventListener('change', () => {
     quantityRoomThree.removeAttribute('disabled');
   }
 });
+
+function createAdvertisementInServer () {
+  formElement.addEventListener('submit', (evt) => {
+    evt.preventDefault(); 
+      const formData = new FormData(evt.target);
+      console.log(formData);
+      pushData(formData);
+   })
+}
+
+createAdvertisementInServer();
 
 export {switchForm};
