@@ -15,7 +15,7 @@ const MIN_GUESTS = 4;
 const MAX_GUESTS = 10;
 
 const MIN_PRICE = 1500;
-const MAX_PRICE = 10500;
+const MAX_PRICE = 1000000;
 
 const titleAdvt = 'Тестовый заголовок';
 const descriptionAdvt = 'Тестовое описание';
