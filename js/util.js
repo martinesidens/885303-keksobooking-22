@@ -46,8 +46,17 @@ function pushSuccessMessage () {
 function pushFailureMessage () {
   const messageContainer = document.querySelector('main');
   const failure = document.querySelector('#error').content;
-  messageContainer.appendChild(failure);  //.addEventListener('click', )
+  const buttonError = failure.querySelector('error__button');
+  messageContainer.appendChild(failure);
+  console.log(failure);
+  buttonError.addEventListener('click', () => {console.log('ntcn')});
+//   buttonError.addEventListener('click', (evt) => {
 
+//     // if (evt.key === ('Escape' || 'Esc')) {
+//     //   messageContainer.removeChild(failure);
+//     // }
+//     // messageContainer.removeChild(failure);
+//  });
 }
 
 export {getRandomArray, getRandomFloat, getRandomInt, showAlert, pushSuccessMessage, pushFailureMessage};
