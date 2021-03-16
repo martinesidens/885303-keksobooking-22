@@ -50,6 +50,9 @@ function pushFailureMessage () {
   messageContainer.appendChild(failure);
   console.log(failure);
   buttonError.addEventListener('click', () => {console.log('ntcn')});
+  // Добавить три обработчика событий: overlay, button, Esc;
+  // Удаляю класс hidden (block|none);
+  // В разметке можно поставить классы сразу.
 //   buttonError.addEventListener('click', (evt) => {
 
 //     // if (evt.key === ('Escape' || 'Esc')) {

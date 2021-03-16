@@ -24,8 +24,9 @@ function pushData (formData) {
     body: formData,
   },
   )
-  .then(pushSuccessMessage())
-  .catch(pushFailureMessage());
+  .then(pushSuccessMessage)
+  .catch(pushFailureMessage);
+  // fixme Отрабатывает then там где не надо
 }
 
 //console.log(formData);

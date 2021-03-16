@@ -1,4 +1,3 @@
-import {MAX_PRICE} from './variables.js';
 import {pushData} from './server.js';
 
 const formElement = document.querySelector('.ad-form');
@@ -19,6 +18,8 @@ const MIN_VALUE_FOR_HOUSING = {
   house: 5000,
   palace: 10000,
 }
+
+const MAX_PRICE = 1000000;
 
 function switchForm () {
   formElement.classList.toggle('ad-form--disabled');
@@ -122,7 +123,6 @@ function createAdvertisementInServer () {
     evt.preventDefault();
       const formData = new FormData(evt.target);
       pushData(formData);
-      console.log(formData);
    })
 }
 
