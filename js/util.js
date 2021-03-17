@@ -36,19 +36,24 @@ function getRandomInt (minNumber, maxNumber) {
     alertContainer.remove();
   }, ALERT_SHOW_TIME);
 }
+const success = document.querySelector('#success').content;
+const overlay = document.querySelector('.success');
 
 function pushSuccessMessage () {
   const messageContainer = document.querySelector('main');
-  const success = document.querySelector('#success').content;
   messageContainer.appendChild(success);
+  success.addEventListener('click', () => {
+    success.classList.add('.hidden');
+  });
 }
+
 
 function pushFailureMessage () {
   const messageContainer = document.querySelector('main');
   const failure = document.querySelector('#error').content;
-  const buttonError = failure.querySelector('error__button');
+  const buttonError = document.querySelector('error__button');
   messageContainer.appendChild(failure);
-  console.log(failure);
+  console.log(buttonError);
   buttonError.addEventListener('click', () => {console.log('ntcn')});
   // Добавить три обработчика событий: overlay, button, Esc;
   // Удаляю класс hidden (block|none);

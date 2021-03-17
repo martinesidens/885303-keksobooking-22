@@ -1,4 +1,5 @@
 import {pushData} from './server.js';
+import {mainLatLng, myIcon, marker} from './map.js';
 
 const formElement = document.querySelector('.ad-form');
 const interactiveElements = formElement.querySelectorAll('fieldset');
@@ -7,6 +8,7 @@ const mapFilterElements = mapFormElement.querySelectorAll('select');
 const priceElement = document.querySelector('#price');
 const roomNumber = document.querySelector('#room_number');
 const capacityGuests = document.querySelector('#capacity');
+const closeButton = document.querySelector('.ad-form__reset');
 
 const MIN_NAME_LENGTH = 30;
 const MAX_NAME_LENGTH = 100;
@@ -109,9 +111,12 @@ priceElement.addEventListener('input', () => {
   priceElement.reportValidity();
 });
 
+
+
 function setFormDefault () {
-  titleAdvertisement.value = '';
-  
+  document.querySelector('.ad-form').reset();
+  mainLatLng.value = '35.6895, 139.692';
+  console.log(mainLatLng.value);
 }
 
 function setDefault() {
@@ -148,6 +153,12 @@ function createAdvertisementInServer() {
     pushData(formData);
   })
 }
+
+function clearFormElement () {
+  closeButton.addEventListener('click', setFormDefault);
+}
+
+clearFormElement();
 
 createAdvertisementInServer();
 
