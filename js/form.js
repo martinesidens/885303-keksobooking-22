@@ -111,6 +111,7 @@ priceElement.addEventListener('input', () => {
 
 function setFormDefault () {
   titleAdvertisement.value = '';
+  
 }
 
 function setDefault() {
