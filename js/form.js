@@ -21,6 +21,11 @@ const MIN_VALUE_FOR_HOUSING = {
 
 const MAX_PRICE = 1000000;
 
+const quantityRoomOne = roomNumber[0];
+const quantityRoomTwo = roomNumber[1];
+const quantityRoomThree = roomNumber[2];
+const quantityRoomHundred = roomNumber[3];
+
 function switchForm () {
   formElement.classList.toggle('ad-form--disabled');
   mapFormElement.classList.toggle('ad-form--disabled');
@@ -32,6 +37,12 @@ function switchForm () {
   mapFilterElements.forEach((element) => {
     element.toggleAttribute('disabled');
   })
+
+  setDefault();
+
+  if (quantityRoomOne.hasAttribute('disabled')) {
+    quantityRoomOne.removeAttribute('disabled');
+  }
 }
 
 function onChangePrice (evt) {
@@ -98,32 +109,43 @@ priceElement.addEventListener('input', () => {
   priceElement.reportValidity();
 });
 
-const quantityRoomOne = roomNumber[0];
-const quantityRoomTwo = roomNumber[1];
-const quantityRoomThree = roomNumber[2];
-const quantityRoomHundred = roomNumber[3];
+function setFormDefault () {
+  titleAdvertisement.value = '';
+}
+
+function setDefault() {
+  quantityRoomOne.setAttribute('disabled', 'disabled');
+  quantityRoomTwo.setAttribute('disabled', 'disabled');
+  quantityRoomThree.setAttribute('disabled', 'disabled');
+  quantityRoomHundred.setAttribute('disabled', 'disabled');
+}
 
 capacityGuests.addEventListener('change', () => {
+
   if (capacityGuests.value == 0) {
+    setDefault();
     quantityRoomHundred.removeAttribute('disabled');
   } else if (capacityGuests.value == 1) {
+    setDefault();
     quantityRoomOne.removeAttribute('disabled');
   } else if (capacityGuests.value == 2) {
+    setDefault();
     quantityRoomOne.removeAttribute('disabled');
     quantityRoomTwo.removeAttribute('disabled');
   } else if (capacityGuests.value == 3) {
+    setDefault();
     quantityRoomOne.removeAttribute('disabled');
     quantityRoomTwo.removeAttribute('disabled');
     quantityRoomThree.removeAttribute('disabled');
   }
 });
 
-function createAdvertisementInServer () {
+function createAdvertisementInServer() {
   formElement.addEventListener('submit', (evt) => {
     evt.preventDefault();
-      const formData = new FormData(evt.target);
-      pushData(formData);
-   })
+    const formData = new FormData(evt.target);
+    pushData(formData);
+  })
 }
 
 createAdvertisementInServer();
