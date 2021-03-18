@@ -7,6 +7,9 @@ import {getData} from './server.js';
 const mainLatLngElement = document.querySelector('#address');
 mainLatLngElement.value = '35.6895, 139.692';
 
+const LAT = 35.6895;
+const LNG = 139.692
+
 const myIcon = L.icon({
   iconUrl: '../img/main-pin.svg',
   iconSize: [38, 95],
@@ -18,8 +21,8 @@ const myIcon = L.icon({
 
 const marker = L.marker(
   {
-    lat: 35.6895,
-    lng: 139.692,
+    lat: LAT,
+    lng: LNG,
   },
   {
     draggable: true,
@@ -27,10 +30,12 @@ const marker = L.marker(
   },
 );
 
+const map = L.map('map-canvas');
+
 switchForm();
 
 function initMap () {
-  const map = L.map('map-canvas').on('load', () => {
+  map.on('load', () => {
     switchForm();
     mainLatLngElement.value = '35.6895, 139.692';
   })
@@ -42,8 +47,6 @@ function initMap () {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     },
   ).addTo(map);
-
-
 
   marker.addTo(map);
   marker.on('moveend', (evt) => {
@@ -81,4 +84,18 @@ function initMap () {
   }
 }
 
-export {initMap, myIcon, marker, mainLatLngElement};
+function setDefualtMarker () {
+  const marker = L.marker(
+    {
+      lat: LAT,
+      lng: LNG,
+    },
+    {
+      draggable: true,
+      icon: myIcon,
+    },
+  );
+  marker.setLatLng(L.latLng(LAT, LNG));
+}
+
+export {initMap, myIcon, marker, mainLatLngElement, setDefualtMarker};

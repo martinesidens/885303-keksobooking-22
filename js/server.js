@@ -18,15 +18,20 @@ function getData () {
 }
 
 function pushData (formData) {
-  fetch('https://22.javascript.pages.academy/keksobooking',
+  fetch('https://22.javascript.pages.academy/keksobookin',
   {
     method: 'POST',
     body: formData,
   },
   )
+  .then((response) => {
+    if (response.ok) {
+      return response;
+      }
+      throw new Error(`${response.status} ${response.statusText}`);
+    })
   .then(pushSuccessMessage)
   .catch(pushFailureMessage);
-  // fixme Отрабатывает then там где не надо
 }
 
 //console.log(formData);

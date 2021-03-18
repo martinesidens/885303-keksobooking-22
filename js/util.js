@@ -48,7 +48,7 @@ function pushSuccessMessage() {
     message.classList.add('hidden');
   });
 
-  message.addEventListener('keydown', (evt) => {
+  document.addEventListener('keydown', (evt) => {
     console.log(evt);
     if (evt.key === ('Escape' || 'Esc')) {
       evt.preventDefault();
@@ -57,26 +57,27 @@ function pushSuccessMessage() {
   });
 }
 
-function pushFailureMessage () {
+function pushFailureMessage() {
   const messageContainer = document.querySelector('main');
   const failure = document.querySelector('#error').content;
   messageContainer.appendChild(failure);
   const message = messageContainer.querySelector('.error');
-  const buttonError = messageContainer.querySelector('error__button');
-  сonsole.log(buttonError);
+  const buttonError = message.querySelector('.error__button');
 
   message.addEventListener('click', () => {
     message.classList.add('hidden');
   });
 
-  message.addEventListener('keydown', (evt) => {
-    console.log(evt);
+  document.addEventListener('keydown', (evt) => {
     if (evt.key === ('Escape' || 'Esc')) {
       evt.preventDefault();
       message.classList.add('hidden');
     }
   });
 
+  buttonError.addEventListener('click', () => {
+    message.classList.add('hidden');
+  });
 }
 
 export {getRandomArray, getRandomFloat, getRandomInt, showAlert, pushSuccessMessage, pushFailureMessage};
