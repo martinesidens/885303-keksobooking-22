@@ -4,8 +4,8 @@ import {switchForm} from './form.js';
 import {getAdvertisementElement} from './get-card.js';
 import {getData} from './server.js';
 
-const mainLatLng = document.querySelector('#address');
-mainLatLng.value = '35.6895, 139.692';
+const mainLatLngElement = document.querySelector('#address');
+mainLatLngElement.value = '35.6895, 139.692';
 
 const myIcon = L.icon({
   iconUrl: '../img/main-pin.svg',
@@ -32,7 +32,7 @@ switchForm();
 function initMap () {
   const map = L.map('map-canvas').on('load', () => {
     switchForm();
-    mainLatLng.value = '35.6895, 139.692';
+    mainLatLngElement.value = '35.6895, 139.692';
   })
     .setView([35.6895, 139.692], 10);
 
@@ -81,4 +81,4 @@ function initMap () {
   }
 }
 
-export {initMap, myIcon, marker, mainLatLng};
+export {initMap, myIcon, marker, mainLatLngElement};

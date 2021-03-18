@@ -1,5 +1,5 @@
 import {pushData} from './server.js';
-import {mainLatLng, myIcon, marker} from './map.js';
+import {mainLatLngElement, myIcon, marker} from './map.js';
 
 const formElement = document.querySelector('.ad-form');
 const interactiveElements = formElement.querySelectorAll('fieldset');
@@ -111,12 +111,12 @@ priceElement.addEventListener('input', () => {
   priceElement.reportValidity();
 });
 
-
-
-function setFormDefault () {
+function setFormDefault (evt) {
+  evt.preventDefault();
   document.querySelector('.ad-form').reset();
-  mainLatLng.value = '35.6895, 139.692';
-  console.log(mainLatLng.value);
+  document.querySelector('#address').value = '121212';
+  mainLatLngElement.value = '35.6895, 139.692';
+  console.log(mainLatLngElement);
 }
 
 function setDefault() {

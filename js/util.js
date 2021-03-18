@@ -36,35 +36,47 @@ function getRandomInt (minNumber, maxNumber) {
     alertContainer.remove();
   }, ALERT_SHOW_TIME);
 }
-const success = document.querySelector('#success').content;
-const overlay = document.querySelector('.success');
 
-function pushSuccessMessage () {
+const success = document.querySelector('#success').content;
+
+function pushSuccessMessage() {
   const messageContainer = document.querySelector('main');
   messageContainer.appendChild(success);
-  success.addEventListener('click', () => {
-    success.classList.add('.hidden');
+  const message = messageContainer.querySelector('.success');
+
+  message.addEventListener('click', () => {
+    message.classList.add('hidden');
+  });
+
+  message.addEventListener('keydown', (evt) => {
+    console.log(evt);
+    if (evt.key === ('Escape' || 'Esc')) {
+      evt.preventDefault();
+      message.classList.add('hidden');
+    }
   });
 }
-
 
 function pushFailureMessage () {
   const messageContainer = document.querySelector('main');
   const failure = document.querySelector('#error').content;
-  const buttonError = document.querySelector('error__button');
   messageContainer.appendChild(failure);
-  console.log(buttonError);
-  buttonError.addEventListener('click', () => {console.log('ntcn')});
-  // Добавить три обработчика событий: overlay, button, Esc;
-  // Удаляю класс hidden (block|none);
-  // В разметке можно поставить классы сразу.
-//   buttonError.addEventListener('click', (evt) => {
+  const message = messageContainer.querySelector('.error');
+  const buttonError = messageContainer.querySelector('error__button');
+  сonsole.log(buttonError);
 
-//     // if (evt.key === ('Escape' || 'Esc')) {
-//     //   messageContainer.removeChild(failure);
-//     // }
-//     // messageContainer.removeChild(failure);
-//  });
+  message.addEventListener('click', () => {
+    message.classList.add('hidden');
+  });
+
+  message.addEventListener('keydown', (evt) => {
+    console.log(evt);
+    if (evt.key === ('Escape' || 'Esc')) {
+      evt.preventDefault();
+      message.classList.add('hidden');
+    }
+  });
+
 }
 
 export {getRandomArray, getRandomFloat, getRandomInt, showAlert, pushSuccessMessage, pushFailureMessage};
