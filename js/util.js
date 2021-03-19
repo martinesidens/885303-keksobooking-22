@@ -16,7 +16,7 @@ function getRandomInt (minNumber, maxNumber) {
   }
 }
 
- function showAlert (message) {
+function showAlert (message) {
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = 100;
   alertContainer.style.position = 'absolute';
@@ -49,7 +49,6 @@ function pushSuccessMessage() {
   });
 
   document.addEventListener('keydown', (evt) => {
-    console.log(evt);
     if (evt.key === ('Escape' || 'Esc')) {
       evt.preventDefault();
       message.classList.add('hidden');
