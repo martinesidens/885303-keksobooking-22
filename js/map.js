@@ -2,14 +2,42 @@
 
 import {switchForm} from './form.js';
 import {getAdvertisementElement} from './get-card.js';
-import {getAdvertisements} from './data.js';
+import {getData} from './server.js';
+
+const mainLatLngElement = document.querySelector('#address');
+mainLatLngElement.value = '35.6895, 139.692';
+
+const LAT = 35.6895;
+const LNG = 139.692
+
+const myIcon = L.icon({
+  iconUrl: '../img/main-pin.svg',
+  iconSize: [38, 95],
+  iconAnchor: [26, 52],
+  popupAnchor: [-3, -76],
+  shadowSize: [68, 95],
+  shadowAnchor: [22, 94],
+});
+
+const marker = L.marker(
+  {
+    lat: LAT,
+    lng: LNG,
+  },
+  {
+    draggable: true,
+    icon: myIcon,
+  },
+);
+
+const map = L.map('map-canvas');
 
 switchForm();
 
 function initMap () {
-  const map = L.map('map-canvas').on('load', () => {
+  map.on('load', () => {
     switchForm();
-    document.querySelector('#address').value = '35.6895, 139.692';
+    mainLatLngElement.value = '35.6895, 139.692';
   })
     .setView([35.6895, 139.692], 10);
 
@@ -20,56 +48,54 @@ function initMap () {
     },
   ).addTo(map);
 
-  const myIcon = L.icon({
-    iconUrl: '../img/main-pin.svg',
-    iconSize: [38, 95],
-    iconAnchor: [26, 52],
-    popupAnchor: [-3, -76],
-    shadowSize: [68, 95],
-    shadowAnchor: [22, 94],
+  marker.addTo(map);
+  marker.on('moveend', (evt) => {
+    document.querySelector('#address').value = `${parseFloat(evt.target.getLatLng().lat).toFixed(5)}, ${parseFloat(evt.target.getLatLng().lng).toFixed(5)}`;
   });
 
+  getData().then(setCommonMarkers);
+
+  function setCommonMarkers (list) {
+    list.forEach((advertisement) => {
+      const commonIcon = L.icon({
+        iconUrl: '../img/pin.svg',
+        iconSize: [38, 95],
+        iconAnchor: [26, 52],
+        popupAnchor: [-3, -76],
+        shadowSize: [68, 95],
+        shadowAnchor: [22, 94],
+      });
+
+      const marker = L.marker(
+
+        {
+          lat: advertisement.location.lat,
+          lng: advertisement.location.lng,
+        },
+        {
+          draggable: true,
+          icon: commonIcon,
+        },
+      );
+
+      marker.addTo(map);
+      marker.bindPopup(getAdvertisementElement(advertisement));
+    });
+  }
+}
+
+function setDefualtMarker () {
   const marker = L.marker(
     {
-      lat: 35.6895,
-      lng: 139.692,
+      lat: LAT,
+      lng: LNG,
     },
     {
       draggable: true,
       icon: myIcon,
     },
   );
-
-  marker.addTo(map);
-  marker.on('moveend', (evt) => {
-    document.querySelector('#address').value = `${parseFloat(evt.target.getLatLng().lat).toFixed(5)}, ${parseFloat(evt.target.getLatLng().lng).toFixed(5)}`;
-  });
-
-  getAdvertisements().forEach((advertisement) => {
-    const commonIcon = L.icon({
-      iconUrl: '../img/pin.svg',
-      iconSize: [38, 95],
-      iconAnchor: [26, 52],
-      popupAnchor: [-3, -76],
-      shadowSize: [68, 95],
-      shadowAnchor: [22, 94],
-    });
-
-    const marker = L.marker(
-
-      {
-        lat: advertisement.location.x,
-        lng: advertisement.location.y,
-      },
-      {
-        draggable: true,
-        icon: commonIcon,
-      },
-    );
-
-    marker.addTo(map);
-    marker.bindPopup(getAdvertisementElement(advertisement));
-  });
+  marker.setLatLng(L.latLng(LAT, LNG));
 }
 
-export {initMap};
+export {initMap, myIcon, marker, mainLatLngElement, setDefualtMarker};

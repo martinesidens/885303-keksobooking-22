@@ -1,4 +1,5 @@
-import {MAX_PRICE} from './variables.js';
+import {pushData} from './server.js';
+import {mainLatLngElement, setDefualtMarker} from './map.js';
 
 const formElement = document.querySelector('.ad-form');
 const interactiveElements = formElement.querySelectorAll('fieldset');
@@ -7,6 +8,7 @@ const mapFilterElements = mapFormElement.querySelectorAll('select');
 const priceElement = document.querySelector('#price');
 const roomNumber = document.querySelector('#room_number');
 const capacityGuests = document.querySelector('#capacity');
+const closeButton = document.querySelector('.ad-form__reset');
 
 const MIN_NAME_LENGTH = 30;
 const MAX_NAME_LENGTH = 100;
@@ -19,6 +21,13 @@ const MIN_VALUE_FOR_HOUSING = {
   palace: 10000,
 }
 
+const MAX_PRICE = 1000000;
+
+const quantityRoomOne = roomNumber[0];
+const quantityRoomTwo = roomNumber[1];
+const quantityRoomThree = roomNumber[2];
+const quantityRoomHundred = roomNumber[3];
+
 function switchForm () {
   formElement.classList.toggle('ad-form--disabled');
   mapFormElement.classList.toggle('ad-form--disabled');
@@ -30,6 +39,12 @@ function switchForm () {
   mapFilterElements.forEach((element) => {
     element.toggleAttribute('disabled');
   })
+
+  setDefault();
+
+  if (quantityRoomOne.hasAttribute('disabled')) {
+    quantityRoomOne.removeAttribute('disabled');
+  }
 }
 
 function onChangePrice (evt) {
@@ -96,24 +111,55 @@ priceElement.addEventListener('input', () => {
   priceElement.reportValidity();
 });
 
-const quantityRoomOne = roomNumber[0];
-const quantityRoomTwo = roomNumber[1];
-const quantityRoomThree = roomNumber[2];
-const quantityRoomHundred = roomNumber[3];
+function setFormDefault (evt) {
+  evt.preventDefault();
+  document.querySelector('.ad-form').reset();
+  document.querySelector('#address').value = '121212';
+  mainLatLngElement.value = '35.6895, 139.692';
+  setDefualtMarker();
+}
+
+function setDefault() {
+  quantityRoomOne.setAttribute('disabled', 'disabled');
+  quantityRoomTwo.setAttribute('disabled', 'disabled');
+  quantityRoomThree.setAttribute('disabled', 'disabled');
+  quantityRoomHundred.setAttribute('disabled', 'disabled');
+}
 
 capacityGuests.addEventListener('change', () => {
+
   if (capacityGuests.value == 0) {
+    setDefault();
     quantityRoomHundred.removeAttribute('disabled');
   } else if (capacityGuests.value == 1) {
+    setDefault();
     quantityRoomOne.removeAttribute('disabled');
   } else if (capacityGuests.value == 2) {
+    setDefault();
     quantityRoomOne.removeAttribute('disabled');
     quantityRoomTwo.removeAttribute('disabled');
   } else if (capacityGuests.value == 3) {
+    setDefault();
     quantityRoomOne.removeAttribute('disabled');
     quantityRoomTwo.removeAttribute('disabled');
     quantityRoomThree.removeAttribute('disabled');
   }
 });
 
-export {switchForm};
+function createAdvertisementInServer() {
+  formElement.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const formData = new FormData(evt.target);
+    pushData(formData);
+  })
+}
+
+function clearFormElement () {
+  closeButton.addEventListener('click', setFormDefault);  
+}
+
+clearFormElement();
+
+createAdvertisementInServer();
+
+export {switchForm, clearFormElement};
