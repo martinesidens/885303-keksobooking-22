@@ -94,4 +94,4 @@ const marker = L.marker(
   });
  }
 
-export {initMap, mainLatLngElement, resetMainMarker, setCommonMarkers};
+export {initMap, mainLatLngElement, resetMainMarker,  };
