@@ -1,4 +1,3 @@
-import {getData} from './server.js';
 import {setCommonMarkers} from './map.js';
 
 
@@ -17,28 +16,25 @@ const filterConditionerElement = document.querySelector('#filter-conditioner');
 
 function FiltersMap (list) {
   setCommonMarkers(list);
+  const newList = [];
   mapFiltersForm.addEventListener('change', (evt) => {
     //console.log(valueForm);
     const dataForm = evt.target.value;
-    console.log(dataForm);
     list.filter((element) => {
-      console.log(element);
-      element.offer.type === 'palace';
-      //element.offer.type === 'palace';
-      //offer.type === palace;
-      //console.log(element.offer.type);
-      //console.log(dataForm);
+      // console.log(element.offer.type);
+      // console.log(dataForm);
+      // console.log('_________________');
       //console.log(list);
-    })
-    setCommonMarkers(list);
+
+
+      if (element.offer.type === dataForm || element.price === dataForm || element.rooms === dataForm || element.guests === dataForm) {
+        console.log(list);
+        return true;
+      }
+      //newList.push('');
+    });
+    setCommonMarkers(newList);
   });
-  
 }
 
-
 export {FiltersMap};
-
-//  Делаем один обработчик на все input;
-//  Собираем состояние всех фильтров из формы;
-//  Ищемfff
-
