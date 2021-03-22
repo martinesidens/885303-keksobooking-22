@@ -1,4 +1,5 @@
 import {getData} from './server.js';
+import {setCommonMarkers} from './map.js';
 
 
 const mapFiltersForm = document.querySelector('.map__filters');
@@ -14,13 +15,24 @@ const filterWasherElement = document.querySelector('#filter-washer');
 const filterElevatorElement = document.querySelector('#filter-elevator');
 const filterConditionerElement = document.querySelector('#filter-conditioner');
 
-function FiltersMap () {
-  mapFiltersForm.addEventListener('change', () => {
-    const data = new FormData(mapFiltersForm);
-    data.forEach((element) => {
+function FiltersMap (list) {
+  setCommonMarkers(list);
+  mapFiltersForm.addEventListener('change', (evt) => {
+    //console.log(valueForm);
+    const dataForm = evt.target.value;
+    console.log(dataForm);
+    list.filter((element) => {
       console.log(element);
+      element.offer.type === 'palace';
+      //element.offer.type === 'palace';
+      //offer.type === palace;
+      //console.log(element.offer.type);
+      //console.log(dataForm);
+      //console.log(list);
     })
+    setCommonMarkers(list);
   });
+  
 }
 
 

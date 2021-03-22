@@ -35,16 +35,17 @@ const marker = L.marker(
 
   const map = L.map('map-canvas');
 
-  switchForm();
-
+  
   function setMainMarker () {
     marker.addTo(map);
   }
-
+  
   function resetMainMarker () {
     marker.setLatLng([35.6895, 139.692]);
   }
 
+  switchForm();
+  
   function initMap () {
     map.on('load', () => {
       switchForm();
@@ -63,36 +64,34 @@ const marker = L.marker(
       marker.on('moveend', (evt) => {
         document.querySelector('#address').value = `${parseFloat(evt.target.getLatLng().lat).toFixed(5)}, ${parseFloat(evt.target.getLatLng().lng).toFixed(5)}`;
       });
+    }
+    
+    function setCommonMarkers (list) {
+      list.slice(0, QUANTITY_ADVERTISEMENT).forEach((advertisement) => {
+        const commonIcon = L.icon({
+          iconUrl: '../img/pin.svg',
+          iconSize: [38, 95],
+          iconAnchor: [26, 52],
+          popupAnchor: [-3, -76],
+          shadowSize: [68, 95],
+          shadowAnchor: [22, 94],
+        });
 
-      getData().then(setCommonMarkers);
+        const marker = L.marker(
 
-      function setCommonMarkers (list) {
-        list.slice(0, QUANTITY_ADVERTISEMENT).forEach((advertisement) => {
-          const commonIcon = L.icon({
-            iconUrl: '../img/pin.svg',
-            iconSize: [38, 95],
-            iconAnchor: [26, 52],
-            popupAnchor: [-3, -76],
-            shadowSize: [68, 95],
-            shadowAnchor: [22, 94],
-          });
+      {
+        lat: advertisement.location.lat,
+        lng: advertisement.location.lng,
+      },
+      {
+        draggable: true,
+        icon: commonIcon,
+      },
+    );
 
-          const marker = L.marker(
+    marker.addTo(map);
+    marker.bindPopup(getAdvertisementElement(advertisement));
+  });
+ }
 
-        {
-          lat: advertisement.location.lat,
-          lng: advertisement.location.lng,
-        },
-        {
-          draggable: true,
-          icon: commonIcon,
-        },
-      );
-
-      marker.addTo(map);
-      marker.bindPopup(getAdvertisementElement(advertisement));
-    });
-   }
-  }
-
-export {initMap, mainLatLngElement, resetMainMarker};
+export {initMap, mainLatLngElement, resetMainMarker, setCommonMarkers};
