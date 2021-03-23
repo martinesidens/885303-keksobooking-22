@@ -4,10 +4,12 @@ const mapFiltersForm = document.querySelector('.map__filters');
 
 function filterDataHandler (list, evt)  {
   const dataForm = evt.target.value;
-//   const qwer = new FormData(mapFiltersForm);
-//   for (var value of qwer.values()) {
-//     console.log(value);
-//  }
+  const qwer = new FormData(mapFiltersForm);
+  const listFilters = [];
+  for (var value of qwer.values()) {
+    listFilters.push(value);
+    console.log(listFilters);
+ }
   const filteredList = list.filter((element) => {
 
     if (element.offer.type === dataForm) {
