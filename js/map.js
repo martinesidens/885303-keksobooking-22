@@ -21,7 +21,7 @@ const myIcon = L.icon({
   shadowAnchor: [22, 94],
 });
 
-const marker = L.marker(
+const mainMarker = L.marker(
   {
     lat: LAT,
     lng: LNG,
@@ -37,11 +37,11 @@ const marker = L.marker(
 
 
   function setMainMarker () {
-    marker.addTo(map);
+    mainMarker.addTo(map);
   }
 
   function resetMainMarker () {
-    marker.setLatLng([35.6895, 139.692]);
+    mainMarker.setLatLng([35.6895, 139.692]);
   }
 
   switchForm();
@@ -61,13 +61,26 @@ const marker = L.marker(
       ).addTo(map);
 
       setMainMarker();
-      marker.on('moveend', (evt) => {
+      mainMarker.on('moveend', (evt) => {
         document.querySelector('#address').value = `${parseFloat(evt.target.getLatLng().lat).toFixed(5)}, ${parseFloat(evt.target.getLatLng().lng).toFixed(5)}`;
       });
     }
 
+    // function removeMarkers (list) {
+    //   list.forEach(() => {
+    //     commonMarker.remove();
+    //   })
+    // }
+
+
+
+
     function setCommonMarkers (list) {
+
+      //removeMarkers();
+
       list.slice(0, QUANTITY_ADVERTISEMENT).forEach((advertisement) => {
+
         const commonIcon = L.icon({
           iconUrl: '../img/pin.svg',
           iconSize: [38, 95],
@@ -77,20 +90,18 @@ const marker = L.marker(
           shadowAnchor: [22, 94],
         });
 
-        const marker = L.marker(
-
+        const commonMarker = L.marker(
       {
         lat: advertisement.location.lat,
         lng: advertisement.location.lng,
       },
       {
-        draggable: true,
         icon: commonIcon,
       },
     );
 
-    marker.addTo(map);
-    marker.bindPopup(getAdvertisementElement(advertisement));
+    commonMarker.addTo(map);
+    commonMarker.bindPopup(getAdvertisementElement(advertisement));
   });
  }
 

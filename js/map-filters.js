@@ -2,24 +2,24 @@ import {setCommonMarkers} from './map.js';
 
 const mapFiltersForm = document.querySelector('.map__filters');
 
-function setFiltersMap (list) {
-  const newList = [];
-  setCommonMarkers(list);
-  mapFiltersForm.addEventListener('change', (evt) => {
-    const dataForm = evt.target.value;
-    return list.filter((element) => {
-      console.log(dataForm);
-      //console.log(element);
+function filterDataHandler (list, evt)  {
+  const dataForm = evt.target.value;
+//   const qwer = new FormData(mapFiltersForm);
+//   for (var value of qwer.values()) {
+//     console.log(value);
+//  }
+  const filteredList = list.filter((element) => {
 
-      if (element.offer.type === dataForm) {
-      // || element.price === dataForm || element.rooms === dataForm || element.guests === dataForm) {
-        return true;
-      }      //newList.push(element);
-      console.log(newList);
-    });
-    //return list;
+    if (element.offer.type === dataForm) {
+      return true;
+    }
   });
-  setCommonMarkers(newList);
+  setCommonMarkers(filteredList);
+}
+
+function setFiltersMap (list) {
+  setCommonMarkers(list);
+  mapFiltersForm.addEventListener('change', filterDataHandler.bind(undefined, list));
 }
 
 export {setFiltersMap};
