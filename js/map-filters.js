@@ -18,7 +18,9 @@ function filterDataHandler (list, evt)  {
   
   const filteredList = list.filter((element) => {
     //debugger;
-    
+    function checkDataForm (data, valueFormElement) {
+      if (valueFormElement === )
+    }
     if (getValue(element.offer.price) === getValuePrice (listFilters, getValue(element.offer.price))) {
       return true;
     }
