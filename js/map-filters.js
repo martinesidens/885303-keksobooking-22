@@ -5,22 +5,19 @@ const mapFiltersForm = document.querySelector('.map__filters');
 const MIDDLE_MIN = 10000;
 const MIDDLE_MAX = 50000;
 
-function filterDataHandler (list, evt)  {
-  const dataForm = evt.target.value;
+function filterDataHandler (list)  {
 
   const mapFilters = new FormData(mapFiltersForm);
   const listFilters = [];
-  
-  for (var value of mapFilters.values()) {
+
+  for (const value of mapFilters.values()) {
     listFilters.push(value);
   }
-  console.log(listFilters);
-  
+  //console.log(listFilters);
+
   const filteredList = list.filter((element) => {
     //debugger;
-    function checkDataForm (data, valueFormElement) {
-      if (valueFormElement === )
-    }
+
     if (getValue(element.offer.price) === getValuePrice (listFilters, getValue(element.offer.price))) {
       return true;
     }
@@ -32,8 +29,12 @@ function filterDataHandler (list, evt)  {
     if (element.offer.rooms === findElementType (listFilters, element.offer.rooms)) {
       return true;
     }
+
+    if (element.offer.guests === findElementType (listFilters, element.offer.guests)) {
+      return true;
+    }
   });
-  console.log(filteredList);
+  //console.log(filteredList);
   setCommonMarkers(filteredList);
 }
 
@@ -51,7 +52,7 @@ function findElementType (data, element) {
 function getValuePrice (data, value) {
   if (data.includes(value, 0)) {
     return value;
-  }  
+  }
 }
 
 function getValue (value) {
