@@ -1,5 +1,5 @@
 import {pushData} from './server.js';
-import {mainLatLngElement, setDefualtMarker} from './map.js';
+import {mainLatLngElement, resetMainMarker} from './map.js';
 
 const formElement = document.querySelector('.ad-form');
 const interactiveElements = formElement.querySelectorAll('fieldset');
@@ -116,7 +116,7 @@ function setFormDefault (evt) {
   document.querySelector('.ad-form').reset();
   document.querySelector('#address').value = '121212';
   mainLatLngElement.value = '35.6895, 139.692';
-  setDefualtMarker();
+  resetMainMarker();
 }
 
 function setDefault() {
@@ -155,7 +155,7 @@ function createAdvertisementInServer() {
 }
 
 function clearFormElement () {
-  closeButton.addEventListener('click', setFormDefault);  
+  closeButton.addEventListener('click', setFormDefault);
 }
 
 clearFormElement();

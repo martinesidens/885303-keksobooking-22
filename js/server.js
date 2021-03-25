@@ -1,7 +1,7 @@
-import { showAlert, pushSuccessMessage, pushFailureMessage } from './util.js';
+import {showAlert, pushSuccessMessage, pushFailureMessage} from './util.js';
 
 function getData() {
-  return fetch('https://22.javascript.pages.academy/keksobooking/dat')
+  return fetch('https://22.javascript.pages.academy/keksobooking/data')
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -17,7 +17,7 @@ function getData() {
 }
 
 function pushData(formData) {
-  fetch('https://22.javascript.pages.academy/keksobookin', {
+  fetch('https://22.javascript.pages.academy/keksobooking', {
     method: 'POST',
     body: formData,
   })
@@ -33,4 +33,4 @@ function pushData(formData) {
 
 //console.log(formData);
 
-export { getData, pushData };
+export { getData, pushData};
