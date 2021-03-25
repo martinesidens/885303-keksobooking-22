@@ -7,7 +7,7 @@ const MIDDLE_MAX = 50000;
 
 const RERENDER_TIME = 500;
 
-function filterDataHandler (list)  {
+function filterDataHandler(list) {
 
   const mapFilters = new FormData(mapFiltersForm);
   const listFilters = [];
@@ -19,29 +19,31 @@ function filterDataHandler (list)  {
 
   const filteredList = list.filter((element) => {
 
-    if (getValue(element.offer.price) === getValuePrice (listFilters, getValue(element.offer.price))) {
+    if (getValue(element.offer.price) === getValuePrice(listFilters, getValue(element.offer.price))) {
       return true;
     }
 
-    if (element.offer.type === findElementType (listFilters, element.offer.type)) {
+    if (element.offer.type === findElementType(listFilters, element.offer.type)) {
       return true;
     }
 
-    if (element.offer.rooms === findElementType (listFilters, element.offer.rooms)) {
+    if (element.offer.rooms === findElementType(listFilters, element.offer.rooms)) {
       return true;
     }
 
-    if (element.offer.guests === findElementType (listFilters, element.offer.guests)) {
+    if (element.offer.guests === findElementType(listFilters, element.offer.guests)) {
       return true;
     }
 
-    if (element.offer.features[0] === findElementType (listFilters, element.offer.features[0])) {
-      return true;
+    element.offer.features.forEach((element) => {
+      if (element === findElementType(listFilters, element)) {
+        return true;
+      };
     }
-
+    )
   });
   console.log(filteredList);
-  setCommonMarkers((_.debounce(filteredList,  RERENDER_TIME)));
+  _.debounce(() => {setCommonMarkers(filteredList)},  RERENDER_TIME);
 }
 
 function setFiltersMap (list) {
