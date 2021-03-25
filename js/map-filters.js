@@ -1,3 +1,5 @@
+/* global _:readonly */
+
 import {setCommonMarkers} from './map.js';
 
 const mapFiltersForm = document.querySelector('.map__filters');
@@ -15,7 +17,6 @@ function filterDataHandler(list) {
   for (const value of mapFilters.values()) {
     listFilters.push(value);
   }
-  console.log(listFilters);
 
   const filteredList = list.filter((element) => {
 
@@ -38,11 +39,11 @@ function filterDataHandler(list) {
     element.offer.features.forEach((element) => {
       if (element === findElementType(listFilters, element)) {
         return true;
-      };
-    }
+      }
+    },
     )
   });
-  console.log(filteredList);
+
   _.debounce(() => {setCommonMarkers(filteredList)},  RERENDER_TIME);
 }
 

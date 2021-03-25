@@ -1,4 +1,3 @@
-/* global _:readonly */
 
 import {initMap} from './map.js';
 import {setFiltersMap} from './map-filters.js'
