@@ -5,6 +5,8 @@ const mapFiltersForm = document.querySelector('.map__filters');
 const MIDDLE_MIN = 10000;
 const MIDDLE_MAX = 50000;
 
+const RERENDER_TIME = 500;
+
 function filterDataHandler (list)  {
 
   const mapFilters = new FormData(mapFiltersForm);
@@ -35,7 +37,7 @@ function filterDataHandler (list)  {
     }
   });
   //console.log(filteredList);
-  setCommonMarkers(filteredList);
+  _.debounce(setCommonMarkers(filteredList),  RERENDER_TIME);
 }
 
 function setFiltersMap (list) {
