@@ -1,3 +1,5 @@
+/* global _:readonly */
+
 import {setCommonMarkers} from './map.js';
 
 const mapFiltersForm = document.querySelector('.map__filters');
@@ -5,7 +7,9 @@ const mapFiltersForm = document.querySelector('.map__filters');
 const MIDDLE_MIN = 10000;
 const MIDDLE_MAX = 50000;
 
-function filterDataHandler (list)  {
+const RERENDER_TIME = 500;
+
+function filterDataHandler(list) {
 
   const mapFilters = new FormData(mapFiltersForm);
   const listFilters = [];
@@ -13,29 +17,34 @@ function filterDataHandler (list)  {
   for (const value of mapFilters.values()) {
     listFilters.push(value);
   }
-  //console.log(listFilters);
 
   const filteredList = list.filter((element) => {
-    //debugger;
 
-    if (getValue(element.offer.price) === getValuePrice (listFilters, getValue(element.offer.price))) {
-      return true;
-    }
-
-    if (element.offer.type === findElementType (listFilters, element.offer.type)) {
-      return true;
-    }
-    //debugger;
-    if (element.offer.rooms === findElementType (listFilters, element.offer.rooms)) {
+    if (getValue(element.offer.price) === getValuePrice(listFilters, getValue(element.offer.price))) {
       return true;
     }
 
-    if (element.offer.guests === findElementType (listFilters, element.offer.guests)) {
+    if (element.offer.type === findElementType(listFilters, element.offer.type)) {
       return true;
     }
+
+    if (element.offer.rooms === findElementType(listFilters, element.offer.rooms)) {
+      return true;
+    }
+
+    if (element.offer.guests === findElementType(listFilters, element.offer.guests)) {
+      return true;
+    }
+
+    element.offer.features.forEach((element) => {
+      if (element === findElementType(listFilters, element)) {
+        return true;
+      }
+    },
+    )
   });
-  //console.log(filteredList);
-  setCommonMarkers(filteredList);
+
+  _.debounce(() => {setCommonMarkers(filteredList)},  RERENDER_TIME);
 }
 
 function setFiltersMap (list) {
