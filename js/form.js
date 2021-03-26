@@ -128,17 +128,17 @@ function setDefault() {
 
 capacityGuests.addEventListener('change', () => {
 
-  if (capacityGuests.value == 0) {
+  if (capacityGuests.value === 0) {
     setDefault();
     quantityRoomHundred.removeAttribute('disabled');
-  } else if (capacityGuests.value == 1) {
+  } else if (capacityGuests.value === 1) {
     setDefault();
     quantityRoomOne.removeAttribute('disabled');
-  } else if (capacityGuests.value == 2) {
+  } else if (capacityGuests.value === 2) {
     setDefault();
     quantityRoomOne.removeAttribute('disabled');
     quantityRoomTwo.removeAttribute('disabled');
-  } else if (capacityGuests.value == 3) {
+  } else if (capacityGuests.value === 3) {
     setDefault();
     quantityRoomOne.removeAttribute('disabled');
     quantityRoomTwo.removeAttribute('disabled');
