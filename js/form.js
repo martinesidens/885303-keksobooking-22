@@ -114,7 +114,7 @@ priceElement.addEventListener('input', () => {
 function setFormDefault (evt) {
   evt.preventDefault();
   document.querySelector('.ad-form').reset();
-  document.querySelector('#address').value = '121212';
+  //document.querySelector('#address').value = '';
   mainLatLngElement.value = '35.6895, 139.692';
   resetMainMarker();
 }
@@ -151,7 +151,7 @@ function createAdvertisementInServer() {
     evt.preventDefault();
     const formData = new FormData(evt.target);
     pushData(formData);
-  })
+  });
 }
 
 function clearFormElement () {
@@ -162,4 +162,4 @@ clearFormElement();
 
 createAdvertisementInServer();
 
-export {switchForm, clearFormElement};
+export {switchForm, clearFormElement, setFormDefault};

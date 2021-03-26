@@ -1,20 +1,6 @@
+import {setFormDefault} from './form.js'
+
 const ALERT_SHOW_TIME = 10000;
-
-function getRandomArray (data) {
-  return Array.from(data.slice(0, getRandomInt (0, data.length)));
-}
-
-function getRandomFloat(minNumber, maxNumber, symbolAfterPoint) {
-  if(minNumber >= 0 && maxNumber >= 0 && (maxNumber >= minNumber)) {
-    return parseFloat((Math.random() * (maxNumber - minNumber) + minNumber).toFixed(symbolAfterPoint));
-  }
-}
-
-function getRandomInt (minNumber, maxNumber) {
-  if(minNumber >= 0 && maxNumber >= 0 && (maxNumber >= minNumber)) {
-    return parseInt(Math.random() * (maxNumber - minNumber) + minNumber);
-  }
-}
 
 function showAlert (message) {
   const alertContainer = document.createElement('div');
@@ -26,14 +12,18 @@ function showAlert (message) {
   alertContainer.style.padding = '10px 3px';
   alertContainer.style.fontSize = '30px';
   alertContainer.style.textAlign = 'center';
-  alertContainer.style.backgroundColor = '#888888';
+  alertContainer.style.backgroundColor = '#FF7F50';
 
   alertContainer.textContent = message;
 
   document.body.append(alertContainer);
 
+  setTimeDelay(alertContainer);
+}
+
+function setTimeDelay (element) {
   setTimeout(() => {
-    alertContainer.remove();
+    element.remove();
   }, ALERT_SHOW_TIME);
 }
 
@@ -44,16 +34,25 @@ function pushSuccessMessage() {
   messageContainer.appendChild(success);
   const message = messageContainer.querySelector('.success');
 
-  message.addEventListener('click', () => {
-    message.classList.add('hidden');
+  message.addEventListener('click', (evt) => {
+    hideMessage(message);
+    setFormDefault(evt);
+    pushSuccessMessage();
   });
 
   document.addEventListener('keydown', (evt) => {
     if (evt.key === ('Escape' || 'Esc')) {
       evt.preventDefault();
-      message.classList.add('hidden');
+      hideMessage(message);
+      setFormDefault(evt);
+      pushSuccessMessage();
     }
   });
+
+}
+
+function hideMessage (element) {
+  element.classList.add('hidden');
 }
 
 function pushFailureMessage() {
@@ -65,6 +64,7 @@ function pushFailureMessage() {
 
   message.addEventListener('click', () => {
     message.classList.add('hidden');
+    setFormDefault();
   });
 
   document.addEventListener('keydown', (evt) => {
@@ -79,4 +79,4 @@ function pushFailureMessage() {
   });
 }
 
-export {getRandomArray, getRandomFloat, getRandomInt, showAlert, pushSuccessMessage, pushFailureMessage};
+export {showAlert, pushSuccessMessage, pushFailureMessage};
