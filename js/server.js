@@ -31,6 +31,4 @@ function pushData(formData) {
     .catch(pushFailureMessage);
 }
 
-//console.log(formData);
-
 export { getData, pushData};

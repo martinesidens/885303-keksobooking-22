@@ -11,32 +11,33 @@ const RERENDER_TIME = 500;
 
 const listFilters = [];
 
+
 function filterDataHandler(list) {
-  
+
   const mapFilters = new FormData(mapFiltersForm);
 
   for (const value of mapFilters.values()) {
     listFilters.push(value);
   }
-  
+
   const filteredList = list.filter((element) => {
-    
+
     if (getValue(element.offer.price) === getValuePrice(listFilters, getValue(element.offer.price))) {
       return true;
     }
-    
+
     if (element.offer.type === findElementType(listFilters, element.offer.type)) {
       return true;
     }
-    
+
     if (element.offer.rooms === findElementType(listFilters, element.offer.rooms)) {
       return true;
     }
-    
+
     if (element.offer.guests === findElementType(listFilters, element.offer.guests)) {
       return true;
     }
-    
+
     element.offer.features.forEach((element) => {
       if (element === findElementType(listFilters, element)) {
         return true;
@@ -44,30 +45,24 @@ function filterDataHandler(list) {
     },
     )
   });
-  removeMarkers(list);
-  
-  filteredList.forEach((element) => {
-    createMarkers(element);
-  });
 
-  // _.debounce(() => {
-  //   renderMarkers(filteredList);    
-  // },  RERENDER_TIME);
-  
+  removeMarkers(list);
+  renderMarkers(filteredList);
+
+  _.debounce(renderMarkers(filteredList), RERENDER_TIME);
+
   console.log(filteredList);
 }
 
-function renderMarkers (list) {
+function renderMarkers(list) {
   list.forEach((element) => {
     createMarkers(element);
   });
 }
 
-function setFiltersMap (list) {
+function setFiltersMap(list) {
 
-    removeMarkers(list);
-
-  mapFiltersForm.addEventListener('change', filterDataHandler.bind(undefined, list));  
+  mapFiltersForm.addEventListener('change', filterDataHandler.bind(undefined, list));
 }
 
 function findElementType (data, element) {

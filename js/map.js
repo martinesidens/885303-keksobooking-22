@@ -60,7 +60,7 @@ function resetMainMarker () {
 
 switchForm();
 
-function initMap() {
+function initMap(list) {
   map.on('load', () => {
     switchForm();
     mainLatLngElement.value = '35.68951, 139.69200';
@@ -87,7 +87,7 @@ function removeMarkers(list) {
 }
 
 function createMarkers (element) {
-  
+
   const commonMarker = L.marker(
     {
       lat: element.location.lat,
@@ -97,15 +97,15 @@ function createMarkers (element) {
       icon: commonIcon,
     },
     );
-    
+
     commonMarker.addTo(map);
     commonMarker.bindPopup(getAdvertisementElement(element));
   }
-  
+
   function setCommonMarkers(list) {
-      
+
     list.slice(0, QUANTITY_ADVERTISEMENT).forEach((advertisement) => {
-      
+
       createMarkers(advertisement);
   });
 }
