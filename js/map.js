@@ -2,6 +2,8 @@
 
 import {switchForm} from './form.js';
 import {getAdvertisementElement} from './get-card.js';
+import {setFiltersMap} from './map-filters.js'
+
 
 const mainLatLngElement = document.querySelector('#address');
 mainLatLngElement.value = '35.68951, 139.69200';
@@ -72,19 +74,20 @@ function initMap() {
   ).addTo(map);
 
   setMainMarker();
+
   mainMarker.on('moveend', (evt) => {
     document.querySelector('#address').value = `${parseFloat(evt.target.getLatLng().lat).toFixed(5)}, ${parseFloat(evt.target.getLatLng().lng).toFixed(5)}`;
   });
 }
 
 function removeMarkers(list) {
-  list.forEach(() => {
-    commonMarker.remove(map);
+    list.forEach(() => {
+  commonMarker.remove(map);
   });
 }
 
 function createMarkers (element) {
-
+  
   const commonMarker = L.marker(
     {
       lat: element.location.lat,
@@ -93,19 +96,18 @@ function createMarkers (element) {
     {
       icon: commonIcon,
     },
-  );
-
-  commonMarker.addTo(map);
-  commonMarker.bindPopup(getAdvertisementElement(element));
-}
-
-function setCommonMarkers(list) {
-  removeMarkers(list);
-
-  list.slice(0, QUANTITY_ADVERTISEMENT).forEach((advertisement) => {
-
-    createMarkers(advertisement);
+    );
+    
+    commonMarker.addTo(map);
+    commonMarker.bindPopup(getAdvertisementElement(element));
+  }
+  
+  function setCommonMarkers(list) {
+      
+    list.slice(0, QUANTITY_ADVERTISEMENT).forEach((advertisement) => {
+      
+      createMarkers(advertisement);
   });
 }
 
-export { initMap, mainLatLngElement, resetMainMarker, setCommonMarkers };
+export { initMap, mainLatLngElement, resetMainMarker, setCommonMarkers, removeMarkers, createMarkers};

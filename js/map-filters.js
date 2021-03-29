@@ -1,6 +1,6 @@
 /* global _:readonly */
 
-import {setCommonMarkers} from './map.js';
+import {setCommonMarkers, removeMarkers, createMarkers} from './map.js';
 
 const mapFiltersForm = document.querySelector('.map__filters');
 
@@ -9,33 +9,34 @@ const MIDDLE_MAX = 50000;
 
 const RERENDER_TIME = 500;
 
-function filterDataHandler(list) {
+const listFilters = [];
 
+function filterDataHandler(list) {
+  
   const mapFilters = new FormData(mapFiltersForm);
-  const listFilters = [];
 
   for (const value of mapFilters.values()) {
     listFilters.push(value);
   }
-
+  
   const filteredList = list.filter((element) => {
-
+    
     if (getValue(element.offer.price) === getValuePrice(listFilters, getValue(element.offer.price))) {
       return true;
     }
-
+    
     if (element.offer.type === findElementType(listFilters, element.offer.type)) {
       return true;
     }
-
+    
     if (element.offer.rooms === findElementType(listFilters, element.offer.rooms)) {
       return true;
     }
-
+    
     if (element.offer.guests === findElementType(listFilters, element.offer.guests)) {
       return true;
     }
-
+    
     element.offer.features.forEach((element) => {
       if (element === findElementType(listFilters, element)) {
         return true;
@@ -43,12 +44,30 @@ function filterDataHandler(list) {
     },
     )
   });
-  _.debounce(() => {setCommonMarkers(filteredList)},  RERENDER_TIME);
+  removeMarkers(list);
+  
+  filteredList.forEach((element) => {
+    createMarkers(element);
+  });
+
+  // _.debounce(() => {
+  //   renderMarkers(filteredList);    
+  // },  RERENDER_TIME);
+  
+  console.log(filteredList);
+}
+
+function renderMarkers (list) {
+  list.forEach((element) => {
+    createMarkers(element);
+  });
 }
 
 function setFiltersMap (list) {
-  setCommonMarkers(list);
-  mapFiltersForm.addEventListener('change', filterDataHandler.bind(undefined, list));
+
+    removeMarkers(list);
+
+  mapFiltersForm.addEventListener('change', filterDataHandler.bind(undefined, list));  
 }
 
 function findElementType (data, element) {
@@ -73,4 +92,4 @@ function getValue (value) {
     return 'high';
   }
 }
-export {setFiltersMap};
+export {setFiltersMap, filterDataHandler};
