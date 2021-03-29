@@ -78,8 +78,8 @@ function initMap() {
 }
 
 function removeMarkers(list) {
-  list.forEach((element) => {
-    commonMarker.remove(element);
+  list.forEach(() => {
+    commonMarker.remove(map);
   });
 }
 
@@ -96,6 +96,7 @@ function createMarkers (element) {
   );
 
   commonMarker.addTo(map);
+  commonMarker.bindPopup(getAdvertisementElement(element));
 }
 
 function setCommonMarkers(list) {
@@ -104,7 +105,6 @@ function setCommonMarkers(list) {
   list.slice(0, QUANTITY_ADVERTISEMENT).forEach((advertisement) => {
 
     createMarkers(advertisement);
-    commonMarker.bindPopup(getAdvertisementElement(advertisement));
   });
 }
 

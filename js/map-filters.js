@@ -43,7 +43,6 @@ function filterDataHandler(list) {
     },
     )
   });
-
   _.debounce(() => {setCommonMarkers(filteredList)},  RERENDER_TIME);
 }
 
