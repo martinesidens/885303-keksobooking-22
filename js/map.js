@@ -4,10 +4,10 @@ import {switchForm} from './form.js';
 import {getAdvertisementElement} from './get-card.js';
 
 const mainLatLngElement = document.querySelector('#address');
-mainLatLngElement.value = '35.6895, 139.692';
+mainLatLngElement.value = '35.68951, 139.69200';
 
-const LAT = 35.6895;
-const LNG = 139.692
+const LAT = 35.68951;
+const LNG = 139.69200
 
 const QUANTITY_ADVERTISEMENT = 10;
 
@@ -41,9 +41,9 @@ const commonIcon = L.icon({
 });
 
 const commonMarker = L.marker(
-{
-  icon: commonIcon,
-});
+  {
+    icon: commonIcon,
+  });
 
 
 const map = L.map('map-canvas');
@@ -53,7 +53,7 @@ function setMainMarker () {
 }
 
 function resetMainMarker () {
-  mainMarker.setLatLng([35.6895, 139.692]);
+  mainMarker.setLatLng([LAT, LNG]);
 }
 
 switchForm();
@@ -61,9 +61,9 @@ switchForm();
 function initMap() {
   map.on('load', () => {
     switchForm();
-    mainLatLngElement.value = '35.6895, 139.692';
+    mainLatLngElement.value = '35.68951, 139.69200';
   })
-    .setView([35.6895, 139.692], 10);
+    .setView([LAT, LNG], 10);
 
   L.tileLayer(
     'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -79,33 +79,29 @@ function initMap() {
 
 function removeMarkers(list) {
   list.forEach((element) => {
-    console.log('removeMarkers');
     commonMarker.remove(element);
-    });
-  }
+  });
+}
 
-  function createMarkers (element) {
+function createMarkers (element) {
 
-    const commonMarker = L.marker(
-      {
-        lat: element.location.lat,
-        lng: element.location.lng,
-      },
-      {
-        icon: commonIcon,
-      },
-      );
+  const commonMarker = L.marker(
+    {
+      lat: element.location.lat,
+      lng: element.location.lng,
+    },
+    {
+      icon: commonIcon,
+    },
+  );
 
-      console.log('createMarkers');
-      commonMarker.addTo(map);
-  }
+  commonMarker.addTo(map);
+}
 
-    function setCommonMarkers(list) {
+function setCommonMarkers(list) {
+  removeMarkers(list);
 
-    removeMarkers(list);
-
-    console.log('asd');
-    list.slice(0, QUANTITY_ADVERTISEMENT).forEach((advertisement) => {
+  list.slice(0, QUANTITY_ADVERTISEMENT).forEach((advertisement) => {
 
     createMarkers(advertisement);
     commonMarker.bindPopup(getAdvertisementElement(advertisement));

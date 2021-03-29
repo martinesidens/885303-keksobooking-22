@@ -44,8 +44,6 @@ function filterDataHandler(list) {
     )
   });
 
-  console.log('filterDataHandler');
-
   _.debounce(() => {setCommonMarkers(filteredList)},  RERENDER_TIME);
 }
 
