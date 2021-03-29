@@ -112,7 +112,6 @@ priceElement.addEventListener('input', () => {
 });
 
 function setFormDefault (evt) {
-  evt.preventDefault();
   document.querySelector('.ad-form').reset();
   mainLatLngElement.value = '35.6895, 139.692';
   resetMainMarker();

@@ -31,6 +31,20 @@ const mainMarker = L.marker(
   },
 );
 
+const commonIcon = L.icon({
+  iconUrl: '../img/pin.svg',
+  iconSize: [38, 95],
+  iconAnchor: [26, 52],
+  popupAnchor: [-3, -76],
+  shadowSize: [68, 95],
+  shadowAnchor: [22, 94],
+});
+
+const commonMarker = L.marker(
+{
+  icon: commonIcon,
+});
+
 
 const map = L.map('map-canvas');
 
@@ -65,54 +79,35 @@ function initMap() {
 
 function removeMarkers(list) {
   list.forEach((element) => {
-
-    const commonIcon = L.icon({
-      iconUrl: '../img/pin.svg',
-      iconSize: [38, 95],
-      iconAnchor: [26, 52],
-      popupAnchor: [-3, -76],
-      shadowSize: [68, 95],
-      shadowAnchor: [22, 94],
+    console.log('removeMarkers');
+    commonMarker.remove(element);
     });
+  }
 
-    const commonMarker = L.marker({
-      lat: element.location.lat,
-      lng: element.location.lng,
-    }, {
-      icon: commonIcon,
-    });
-
-    commonMarker.remove();
-  })
-}
-
-
-function setCommonMarkers(list) {
-
-  removeMarkers(list);
-
-  list.slice(0, QUANTITY_ADVERTISEMENT).forEach((advertisement) => {
-
-    const commonIcon = L.icon({
-      iconUrl: '../img/pin.svg',
-      iconSize: [38, 95],
-      iconAnchor: [26, 52],
-      popupAnchor: [-3, -76],
-      shadowSize: [68, 95],
-      shadowAnchor: [22, 94],
-    });
+  function createMarkers (element) {
 
     const commonMarker = L.marker(
       {
-        lat: advertisement.location.lat,
-        lng: advertisement.location.lng,
+        lat: element.location.lat,
+        lng: element.location.lng,
       },
       {
         icon: commonIcon,
       },
-    );
+      );
 
-    commonMarker.addTo(map);
+      console.log('createMarkers');
+      commonMarker.addTo(map);
+  }
+
+    function setCommonMarkers(list) {
+
+    removeMarkers(list);
+
+    console.log('asd');
+    list.slice(0, QUANTITY_ADVERTISEMENT).forEach((advertisement) => {
+
+    createMarkers(advertisement);
     commonMarker.bindPopup(getAdvertisementElement(advertisement));
   });
 }

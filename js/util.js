@@ -35,24 +35,21 @@ function pushSuccessMessage() {
   const message = messageContainer.querySelector('.success');
 
   message.addEventListener('click', (evt) => {
-    hideMessage(message);
+    hideMessage(messageContainer, message);
     setFormDefault(evt);
-    pushSuccessMessage();
   });
 
   document.addEventListener('keydown', (evt) => {
     if (evt.key === ('Escape' || 'Esc')) {
       evt.preventDefault();
-      hideMessage(message);
+      hideMessage(messageContainer, message);
       setFormDefault(evt);
-      pushSuccessMessage();
     }
   });
-
 }
 
-function hideMessage (element) {
-  element.classList.add('hidden');
+function hideMessage (root, element) {
+  root.removeChild(element);
 }
 
 function pushFailureMessage() {
@@ -63,14 +60,13 @@ function pushFailureMessage() {
   const buttonError = message.querySelector('.error__button');
 
   message.addEventListener('click', () => {
-    message.classList.add('hidden');
+    hideMessage(messageContainer, message);
     setFormDefault();
   });
 
   document.addEventListener('keydown', (evt) => {
     if (evt.key === ('Escape' || 'Esc')) {
-      evt.preventDefault();
-      message.classList.add('hidden');
+      hideMessage(messageContainer, message);
     }
   });
 
