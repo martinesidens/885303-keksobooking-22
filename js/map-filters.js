@@ -1,4 +1,4 @@
-import {removeMarkers, createMarkers, arrayMarkers} from './map.js';
+import {removeMarkers, createMarkers} from './map.js';
 
 const mapFiltersForm = document.querySelector('.map__filters');
 
@@ -48,13 +48,13 @@ function filterDataHandler(list) {
 }
 
 function renderMarkers(list) {
+  removeMarkers(list);
   list.forEach((element) => {
     createMarkers(element);
   });
 }
 
 function setFiltersMap(list) {
-  removeMarkers(list);
   mapFiltersForm.addEventListener('change', filterDataHandler.bind(undefined, list));
   
 }

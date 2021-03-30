@@ -80,7 +80,7 @@ function initMap() {
 
 function removeMarkers(list) {  
   list.forEach(() => {
-    commonMarker.remove(map);
+    commonMarker.remove();
   });
 }
 const arrayMarkers = [];
