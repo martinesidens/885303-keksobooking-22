@@ -9,7 +9,7 @@ node_modules/
 npm-debug.log*
 Thumbs.db
 .vscode/
-./css
-./fonts
-./img
-./js
+build/css
+build/fonts
+build/img
+build/js
