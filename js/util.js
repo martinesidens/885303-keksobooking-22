@@ -1,4 +1,4 @@
-import {setFormDefault} from './form.js'
+import {setFormDefault} from './form.js';
 
 const ALERT_SHOW_TIME = 10000;
 
