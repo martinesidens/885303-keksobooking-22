@@ -137,7 +137,7 @@ roomNumber.addEventListener('change', () => {
     setDefault();
     capacityGuestsOne.removeAttribute('disabled');
     capacityGuestsTwo.removeAttribute('disabled');
-  } else if (roomNumber.value == '3') {
+  } else if (roomNumber.value === '3') {
     setDefault();
     capacityGuestsOne.removeAttribute('disabled');
     capacityGuestsTwo.removeAttribute('disabled');
